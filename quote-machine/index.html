@@ -1,0 +1,270 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+
+    <body>
+        
+        <canvas id="myCanvas"></canvas>
+            <div id="quote">
+                <h4 id="quote-text"></h4>
+                <h4 id="quote-author"></h4> <br/><br/>
+                <button type="button" class="btn btn-primary" onclick="callFetchCall()" id="next-quote">Next quote</button>
+                <a class="btn btn-social-icon btn-twitter navbar-social-btn" id="twit-quote" target="_blank">
+                    <span class="fa fa-twitter"></span>
+                </a>
+            </div>
+
+        <script>    
+            
+            //Get quotes from the external website 
+            var canvas = document.getElementById("myCanvas");
+            var hContainer = document.getElementById("quote");
+            var xViewOrig = 1435;
+            var yViewOrig = 716;
+            var imgX;
+            var imgY;
+            var fNRotation;
+            var contX;
+            var contY;
+            var buttonX;
+            var buttonY;
+            var quoteText = document.getElementById("quote-text");
+            var quoteAuthor = document.getElementById("quote-author");
+            var buttonNext = document.getElementById("next-quote");
+            var twitButton = document.getElementById("twit-quote")
+            
+            contY = Math.sqrt((window.innerWidth*window.innerHeight)/(1435*716)) * 170;
+            contX = contY * (280/170);
+            
+            hContainer.style.width = contX + "px";
+            hContainer.style.height = contY + "px";
+            
+            hContainer.style.top = (window.innerHeight/2 - parseInt(hContainer.style.height)/2.3) + "px";
+            hContainer.style.left = (window.innerWidth/2 - parseInt(hContainer.style.width)/2) + "px";
+            
+            imgY = Math.sqrt((window.innerWidth*window.innerHeight)/(1435*716)) * 582;
+            imgX = imgY * (711/582)
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            var ctx = canvas.getContext("2d");
+            var img = new Image();
+            img.src = "http://www.paolo-caponeri.ga/quote-machine/assets/ouroboros.png";
+            
+            var veroCentro = imgX * 265/711+15;
+            var x = canvas.width/2 - veroCentro;
+            var y = canvas.height/2 - veroCentro*1.2;
+            ctx.drawImage(img, x, y, imgX, imgY);
+            
+            window.addEventListener("resize", handleResize, true);
+            
+            function handleResize()
+            {
+                imgY = Math.sqrt((window.innerWidth*window.innerHeight)/(1435*716)) * 582;
+                imgX = imgY * (711/582);
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                veroCentro = imgX * 265/711;
+                x = canvas.width/2 - veroCentro;
+                y = canvas.height/2 - veroCentro*1.2;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.translate(canvas.width/2, canvas.height/2);
+                ctx.rotate(-0.45  * (Math.PI/180) * fNRotation)
+                ctx.translate(-canvas.width/2, -canvas.height/2);
+                ctx.drawImage(img, x, y, imgX, imgY);
+                
+                //update quote-box position as well
+                contY = Math.sqrt((window.innerWidth*window.innerHeight)/(1435*716)) * 170;
+                contX = contY * (280/170);
+            
+                hContainer.style.width = contX + "px";
+                hContainer.style.height = contY + "px";
+                
+                hContainer.style.top = (window.innerHeight/2 - parseInt(hContainer.style.height)/1.7) + "px";
+                hContainer.style.left = (window.innerWidth/2 - parseInt(hContainer.style.width)/2) + "px";  
+            }
+            
+            var cors = "https://cors-anywhere.herokuapp.com/"
+            var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en"
+            
+            function callFetchCall()
+            {
+                var i4;
+            
+                setTimeout(function showQuote(){
+                i4 = setInterval(disappearAll, 50);
+                }, 500);
+
+                function disappearAll()
+                {
+                    if(quoteText.style.opacity <= 0)
+                    {
+                        clearInterval(i4);
+                        fetchCall();
+                    }
+                    else
+                    {
+                        quoteText.style.opacity -= 0.05;
+                        quoteAuthor.style.opacity -= 0.05;
+                        buttonNext.style.opacity -= 0.05;
+                        twitButton.style.opacity -= 0.05;
+                    }
+                }
+                
+            }
+            
+            function fetchCall()
+            {
+            fetch(cors + url)
+                .then(response => {
+                if(response.ok)
+                {
+                    return response.json()
+                }
+                else
+                {
+                    fetchCall();
+                }
+            })
+                .then(json => { document.getElementById("quote-text").innerHTML = json.quoteText;
+                                if(json.quoteAuthor == "")
+                                {
+                                    document.getElementById("quote-text").style.marginTop = "25px";      
+                                }
+                                else
+                                {
+                                    document.getElementById("quote-text").style.marginTop = "0px";
+                                    document.getElementById("quote-author").innerHTML = json.quoteAuthor;
+                                }})
+                .then( () => {getMovin();})
+                .catch(e => {console.log(e.statusText);
+                             fetchCall();})
+            }
+            
+            fetchCall();
+            
+            //Make the quote text and the quote author appear with a gradual fade in
+            function getMovin() 
+            {
+                var i1, i2, i3, i4;
+
+                document.getElementById("twit-quote").setAttribute("href", 
+                    "https://twitter.com/intent/tweet?hashtags=quotes&text=" + quoteText.innerHTML + quoteAuthor.innerHTML);
+                
+                setTimeout(function showQuote(){
+                    i1 = setInterval(appearText, 50);
+                }, 500);
+
+                function appearText() 
+                {
+                    if(quoteText.style.opacity >= 1)
+                    {
+                        i2 = setInterval(appearAuthor, 50);
+                        clearInterval(i1);
+                    }
+                    else
+                    {
+                        quoteText.style.opacity -= -0.05;
+                    }
+                }
+
+                function appearAuthor() 
+                {
+                    if(quoteAuthor.style.opacity >= 1)
+                    {
+                        i3 = setInterval(appearButton, 50);
+                        clearInterval(i2);
+                    }
+                    else
+                    {
+                        quoteAuthor.style.opacity -= -0.04;
+                    }
+                }
+                
+                function appearButton()
+                {
+                    if(buttonNext.style.opacity >= 1)
+                    {
+                        clearInterval(i3);
+                    }
+                    else
+                    {
+                        buttonNext.style.opacity -= -0.05;
+                        twitButton.style.opacity -= -0.05;
+                    }
+                }
+
+                //canvas rotation stuff
+
+                
+                startRotation();
+                var i3;
+
+                function startRotation() 
+                {
+
+                    var nRotation = 0;
+                    var interval = 25;
+                    setTimeout(rotateDragon, 25);
+
+                    function rotateDragon() 
+                    {
+                        
+                        nRotation += 1
+                        fNRotation = nRotation;
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.translate(canvas.width/2, canvas.height/2);
+                        ctx.rotate(-0.45  * (Math.PI/180))
+                        ctx.translate(-canvas.width/2, -canvas.height/2);
+                        ctx.drawImage(img, x, y, imgX, imgY);
+                        
+                        if(nRotation <= 55)
+                        {
+                            interval-= 0.10;
+                        }
+                        else if(nRotation > 55 && nRotation <= 80 )
+                        {
+                            interval-= 0.20;    
+                        }
+                        else if (nRotation > 80 && nRotation <= 140)
+                        {
+                            interval-= 0.14;
+                        }
+                        else if (nRotation > 140 && nRotation <= 200)
+                        {
+                            interval+= 0.20;
+                        }
+                        else
+                        {
+                            interval+= 0.40;
+                        }
+                        
+                        if(nRotation <= 280)
+                        {
+                            setTimeout(rotateDragon, interval);    
+                        }
+                        
+
+                    }
+
+                }
+        }
+        </script>        
+    
+    
+    
+    
+    
+    </body>
+
+    
+
+
+
+</html>

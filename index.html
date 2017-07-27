@@ -1,0 +1,329 @@
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+        
+        <script>
+        $(document).ready(function () {
+            
+        var screenHeight = screen.availHeight;
+        var docHeight = $(document).height();
+        var liHome = document.getElementById("liHome");
+        var liSkills = document.getElementById("liSkills");
+        var liProjects = document.getElementById("liProjects");    
+            
+        document.addEventListener("scroll", function(e){ 
+            scrolledHeight = document.body.scrollTop / docHeight * 100;   
+            
+            if(scrolledHeight >= 15.281899109792285 && scrolledHeight <= 55.03956478733927) {
+                liHome.className = "";
+                liSkills.className = "active";
+                liProjects.className = "";
+            } else if (scrolledHeight < 15.281899109792285) {
+                liHome.className = "active";
+                liSkills.className = "";
+                liProjects.className = "";
+            } else {
+                liHome.className = "";
+                liSkills.className = "";
+                liProjects.className = "active";
+            }
+        }, true);
+        
+        $("a").on('click', function(event) {
+
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+
+        // Store hash
+        var hash = this.hash;
+
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+        scrollTop: $(hash).offset().top
+        }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });    
+            
+            
+            
+            
+        });
+            
+            
+
+        </script>
+        
+        
+    </head>
+
+    <body id="content">
+        <div class="container-fluid">
+            <div style="background-color: #8C2633" class="row">   
+                <div class="col-md-12">
+                    <nav id="navbar1" class="navbar navbar-inverse navbar-fixed-top">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#content">My Portfolio</a>
+                        </div>
+                        
+                        <ul class="nav navbar-nav" id="#navBars">
+                            <li id="liHome" class="active"><a href="#content">Home</a></li>
+                            <li id="liSkills"><a href="#skills">Skills</a></li>
+                            <li id="liProjects"><a href="#offspring">Projects</a></li>
+                        </ul>
+                        <ul id="socialbtn" class="nav navbar-nav navbar-right">
+                            <a href="https://twitter.com/PaoloCaponeri" target="_blank" class="btn btn-social-icon btn-twitter navbar-social-btn">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=100012607363294&fref=ts" target="_blank" class="btn btn-social-icon btn-facebook navbar-social-btn">
+                                <span class="fa fa-facebook"></span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/pmcaponeri?trk=hp-identity-name" target="_blank" class="btn btn-social-icon btn-linkedin navbar-social-btn">
+                                <span class="fa fa-linkedin"></span>
+                            </a>
+                        </ul>
+                    </nav>
+ 
+                </div>
+            
+        
+ 
+            
+            <div id="pres" style="margin-top:50px; background-color: #CCDAD1;" class="col-md-10 col-md-offset-1">
+                
+                <div class="col-md-8">                
+                    <h1 class="lPres1"> Hi there! Nice to meet you!</h1>
+                    <p class="underPres">Those who tell the stories rule society. - Plato</p>
+                    <hr style="width: 50%; border-color: #8C2633;">
+                    <h3 id="tPresentation"> I love technology and its power in solving problems, which is why I enjoy translating issues in virtual solutions. </br> Currently working at Deloitte UK in Digital, I'm looking to expand my knowledge in everything technological until world domination. </h3>
+                    <h3 id="tPresentation"> Here's a bit about myself:</h3>
+                    
+                    <ul style="margin-top: 25px;">
+                        <li>
+                            <h4> Roba</h4>
+                        </li>
+                        <li>
+                            <h4> Roba</h4>
+                        </li>
+                        <li>
+                            <h4> Roba</h4>
+                        </li>
+                        <li>
+                            <h4> Roba</h4>
+                        </li>
+                        <li>
+                            <h4> Roba</h4>
+                        </li>
+                        <li>
+                            <h4> Roba</h4>
+                        </li>
+                    </ul>
+                
+                </div>
+                    <div class="col-md-4">
+                        <img id="struzzoImg" class="img-responsive img-rounded" src="https://s16.postimg.org/pjh92zlyd/website_photo.jpg">
+                    </div>   
+                
+                
+                
+            </div>
+            
+<!-- Stars classification for skills: 0-What is this? 1-Newbie 2-Beginner 3-Skilled 4-Proficient 5-Expert 6-Dragon Slayer -->
+                    
+            <div style="background-color: #9CAEA9;" class="col-md-10 col-md-offset-1">
+                <a class="anchor" id="skills"></a>
+                <h1 class="lPres"> PIXELS CREATION SKILLS </h1>
+                <p class="underPres">I am the wisest man alive, for I know one thing, and that is that I know nothing. - Plato</p>
+                <hr style="width: 50%; border-color: #8C2633; padding-bottom: 10px;">
+                <div class="col-md-4 imgBox">
+                    <img class="coin" src="https://s14.postimg.org/wz6zu4hoh/coin_transpbg.png">
+                    <h3 class="pLang">C++</h3>
+                    <div class="score">
+                        <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i> 
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <h3 class="skill-level"> Beginner </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas euismod erat sed elementum. In sed tortor a neque sollicitudin dictum et vel lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                    </div>
+                </div>
+                <div class="col-md-4 imgBox">
+                    <h3 class="pLang">Java</h3>
+                    <img class="coin" src="https://s14.postimg.org/wz6zu4hoh/coin_transpbg.png">
+                    <div class="score">
+                        <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i> 
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <h3 class="skill-level"> Beginner </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas euismod erat sed elementum. In sed tortor a neque sollicitudin dictum et vel lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                    </div>
+                </div>
+                <div class="col-md-4 imgBox">
+                    <h3 class="pLang">Python</h3>
+                    <img class="coin" src="https://s14.postimg.org/wz6zu4hoh/coin_transpbg.png">
+                    <div class="score">
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i> 
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <h3 class="skill-level"> What is this? </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas euismod erat sed elementum. In sed tortor a neque sollicitudin dictum et vel lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-4 imgBox">
+                    <h3 class="pLang">HTML</h3>
+                    <img class="coin" src="https://s14.postimg.org/wz6zu4hoh/coin_transpbg.png">
+                    <div class="score">
+                        <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i> 
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <h3 class="skill-level"> Beginner </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas euismod erat sed elementum. In sed tortor a neque sollicitudin dictum et vel lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                    </div>
+                </div>
+                <div class="col-md-4 imgBox">
+                    <h3 class="pLang">CSS</h3> 
+                    <img class="coin" src="https://s14.postimg.org/wz6zu4hoh/coin_transpbg.png">
+                    <div class="score">
+                        <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i> 
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <h3 class="skill-level"> Beginner </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas euismod erat sed elementum. In sed tortor a neque sollicitudin dictum et vel lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 imgBox">
+                    <h3 class="pLang">JavaScript</h3>
+                    <img class="coin" src="https://s14.postimg.org/wz6zu4hoh/coin_transpbg.png">
+                    <div class="score">
+                        <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i> 
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                        <h3 class="skill-level"> Newbie </h3>
+                        <p style="margin-bottom: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas euismod erat sed elementum. In sed tortor a neque sollicitudin dictum et vel lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                    </div>
+                </div>
+            </div>
+            
+                    
+            <div style="background-color: #CCDAD1;" class="col-md-10 col-md-offset-1">
+                <a class="anchor" id="offspring"></a>
+                <h1 class="lPres"> PIXELS CREATED </h1>
+                <p class="underPres">[...]What that man creates by means of reason will pale before the art of inspired beings. - Plato</p>
+                <hr style="width: 50%; border-color: #8C2633; padding-bottom: 10px;">
+            
+                <div class="row">    
+                    <div class="col-md-5 work-container" style="margin-left: 50px;">
+                        <a href="scholl-tribute/index.html">
+                            <img class="website img-thumbnail" src="http://paolo-caponeri.ga.s3-website.eu-central-1.amazonaws.com/assets/Sophie_Scholl_website_image.jpg">
+                        </a>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;">
+                                Complete
+                            </div>
+                        </div>
+                        <p class="workDoneDesc">Created in October 2016 as a tribute page to satisfy one of the FreeCode Camp HTML/CSS/Bootstrap challenges. Dedicated to Sophie Scholl for the courage shown in her attempt to awake the German spirit to the injustice of the Nazi regime in 1943. </p>
+                    </div>
+                    
+                    <div class="col-md-5 work-container" style="margin-left: 50px;">
+                        <a href="quote-machine/index.html">
+                            <img class="website img-thumbnail" src="http://paolo-caponeri.ga.s3-website.eu-central-1.amazonaws.com/assets/Quote-machine-screenshot.png">
+                        </a>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;">
+                                Complete
+                            </div>
+                        </div>
+                        <p class="workDoneDesc">Random quote generator test-page to see whether http GET requests work on a normal domain as Chrome gives error if you do a cross-domain request from a localhost. </p>
+                    </div>
+                </div>
+                
+                <div class="row">    
+                    <div class="col-md-5 work-container" style="margin-left: 50px;">
+                        <a href="weather-report/index.html">
+                            <img class="website img-thumbnail" src="assets/Placeholder-1280x720.png">
+                        </a>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;">
+                                Complete
+                            </div>
+                        </div>
+                        <p class="workDoneDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas euismod erat sed elementum. In sed tortor a neque sollicitudin dictum et vel lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                        
+                    </div>
+                    
+                    <div class="col-md-5 work-container" style="margin-left: 50px; margin-bottom: 20px;">
+                        <img class="website img-thumbnail" src="assets/Placeholder-1280x720.png">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;">
+                                Complete
+                            </div>
+                        </div>
+                        <p class="workDoneDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egestas euismod erat sed elementum. In sed tortor a neque sollicitudin dictum et vel lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                    </div>
+                </div>
+            </div> 
+
+        <div class="col-md-12 endBar">
+            <div class="col-md-9">
+                <h5 class="finComment">Thank you for taking the time to take a tour through my creation. Dedicated to FreeCodeCamp "Portfolio" challenge.</h5>
+            </div>
+            <div class="col-md-3">
+                <h5 class="finComment">Created by Paolo Caponeri</h5>
+            </div>
+                
+        </div>  
+                    
+                    
+        </div>
+                
+              
+    </div>
+            
+            
+   
+   
+  
+  
+    
+    
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
