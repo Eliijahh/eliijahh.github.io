@@ -14,12 +14,28 @@
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <h4 id="quote-text"></h4>
-                        <h4 id="quote-author"></h4> <br/><br/>
-                        <a id="twit-quote" target="_blank">
-                            <span class="fa fa-twitter fa-2x"></span>
-                        </a>
-                        <button type="button" class="btn btn-primary" onclick="callFetchCall()" id="next-quote">Next quote</button>
-                    </div>
+                        <h4 id="quote-author"></h4>
+                    
+                        <!-- Next quote center row -->
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center" style="margin-top: 50px; margin-left: 12px">
+                                <a class="next-quote" onclick="callFetchCall()"><strong>Next quote</strong></a>    
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+
+                        <!-- Twitter button center row -->
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center" style="margin-left: 12px; margin-top: 10px;">
+                                <a id="twit-quote" target="_blank">
+                                    <span class="fa fa-twitter fa-2x"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-4"></div>
+                        </div>
+                    </div>    
                     <div class="col-md-4"></div>
                 </div>
             </div>    
@@ -28,7 +44,7 @@
             //Get quotes from the external website 
             var quoteText = document.getElementById("quote-text");
             var quoteAuthor = document.getElementById("quote-author");
-            var buttonNext = document.getElementById("next-quote");
+            var buttonNext = document.querySelector(".next-quote");
             var twitButton = document.getElementById("twit-quote")
             
             var cors = "https://cors-anywhere.herokuapp.com/"

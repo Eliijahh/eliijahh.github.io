@@ -11,6 +11,7 @@
     opacity: 0;
     text-align: center;
     font-size: 2.0vmin;
+    line-height: 1.3;
 
 }
 
@@ -21,28 +22,24 @@
 
 }
 
-#next-quote {
-    float: right;
-    position: relative;
+.next-quote {
     font-size: 1.7vmin;
     opacity: 0;
-    background-color: black;
-
-    border-color: black;
-    color: white;
-    text-align: center;
-    border-radius: 3px 3px 3px 3px;
-    margin-top: 5px;
+    background-color: white;
+    border-color: white;
+    color: black;
 }
 
-#next-quote:hover {
-    background-color: #707070;
-    
+.next-quote:hover {
+    color: grey;
+    text-decoration: none;
+    cursor: pointer;
 }
+
+
 
 #twit-quote {
     opacity: 0;
-    float: left;
-    z-index: 2;
+    margin-top: 10px;
 }
 
