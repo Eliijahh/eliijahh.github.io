@@ -4,28 +4,46 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     </head>
 
     <body>
         
-            <div class="container">
-                <div id="quote" class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <h4 id="quote-text"></h4>
-                        <h4 id="quote-author"></h4>
+        <div class="container">
+            <div class="row align-items-center h-100">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
                     
-                        <!-- Next quote center row -->
-                        <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4 text-center" style="margin-top: 50px; margin-left: 12px">
-                                <a class="next-quote" onclick="callFetchCall()"><strong>Next quote</strong></a>    
-                            </div>
-                            <div class="col-md-4"></div>
+                    <h4 id="quote-text"></h4>
+                    <div class="row">
+                        <div class="col">
+                            <h4 id="quote-author"></h4>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
 
-                        <!-- Twitter button center row -->
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="next-quote" onclick="callFetchCall()">
+                                <i class="fa fa-chevron-right"></i>        
+                            </button> 
+
+                            <a id="twit-quote" target="_blank">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4"></div>
+            </div>    
+        </div>
+        
+            <!-- Twitter button center row 
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-4 text-center" style="margin-left: 12px; margin-top: 10px;">
@@ -35,16 +53,17 @@
                             </div>
                             <div class="col-xs-4"></div>
                         </div>
-                    </div>    
-                    <div class="col-md-4"></div>
-                </div>
-            </div>    
+                    </div>  
+            -->  
+
+
+
         <script>    
             
             //Get quotes from the external website 
             var quoteText = document.getElementById("quote-text");
             var quoteAuthor = document.getElementById("quote-author");
-            var buttonNext = document.querySelector(".next-quote");
+            var buttonNext = document.querySelector("#next-quote");
             var twitButton = document.getElementById("twit-quote")
             
             var cors = "https://cors-anywhere.herokuapp.com/"
