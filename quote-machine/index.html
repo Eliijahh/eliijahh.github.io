@@ -4,91 +4,67 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     </head>
 
     <body>
         
-        <canvas id="myCanvas"></canvas>
-            <div id="quote">
-                <h4 id="quote-text"></h4>
-                <h4 id="quote-author"></h4> <br/><br/>
-                <button type="button" class="btn btn-primary" onclick="callFetchCall()" id="next-quote">Next quote</button>
-                <a class="btn btn-social-icon btn-twitter navbar-social-btn" id="twit-quote" target="_blank">
-                    <span class="fa fa-twitter"></span>
-                </a>
-            </div>
+        <div class="container">
+            <div class="row align-items-center h-100">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    
+                    <h4 id="quote-text"></h4>
+                    <div class="row">
+                        <div class="col">
+                            <h4 id="quote-author"></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="next-quote" onclick="callFetchCall()">
+                                <i class="fa fa-chevron-right"></i>        
+                            </button> 
+
+                            <a id="twit-quote" target="_blank">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4"></div>
+            </div>    
+        </div>
+        
+            <!-- Twitter button center row 
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center" style="margin-left: 12px; margin-top: 10px;">
+                                <a id="twit-quote" target="_blank">
+                                    <span class="fa fa-twitter fa-2x"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-4"></div>
+                        </div>
+                    </div>  
+            -->  
+
+
 
         <script>    
             
             //Get quotes from the external website 
-            var canvas = document.getElementById("myCanvas");
-            var hContainer = document.getElementById("quote");
-            var xViewOrig = 1435;
-            var yViewOrig = 716;
-            var imgX;
-            var imgY;
-            var fNRotation;
-            var contX;
-            var contY;
-            var buttonX;
-            var buttonY;
             var quoteText = document.getElementById("quote-text");
             var quoteAuthor = document.getElementById("quote-author");
-            var buttonNext = document.getElementById("next-quote");
+            var buttonNext = document.querySelector("#next-quote");
             var twitButton = document.getElementById("twit-quote")
-            
-            contY = Math.sqrt((window.innerWidth*window.innerHeight)/(1435*716)) * 170;
-            contX = contY * (280/170);
-            
-            hContainer.style.width = contX + "px";
-            hContainer.style.height = contY + "px";
-            
-            hContainer.style.top = (window.innerHeight/2 - parseInt(hContainer.style.height)/2.3) + "px";
-            hContainer.style.left = (window.innerWidth/2 - parseInt(hContainer.style.width)/2) + "px";
-            
-            imgY = Math.sqrt((window.innerWidth*window.innerHeight)/(1435*716)) * 582;
-            imgX = imgY * (711/582)
-            
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            var ctx = canvas.getContext("2d");
-            var img = new Image();
-            img.src = "quote-machine/assets/ouroboros.png";
-            
-            var veroCentro = imgX * 265/711+15;
-            var x = canvas.width/2 - veroCentro;
-            var y = canvas.height/2 - veroCentro*1.2;
-            ctx.drawImage(img, x, y, imgX, imgY);
-            
-            window.addEventListener("resize", handleResize, true);
-            
-            function handleResize()
-            {
-                imgY = Math.sqrt((window.innerWidth*window.innerHeight)/(1435*716)) * 582;
-                imgX = imgY * (711/582);
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                veroCentro = imgX * 265/711;
-                x = canvas.width/2 - veroCentro;
-                y = canvas.height/2 - veroCentro*1.2;
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                ctx.translate(canvas.width/2, canvas.height/2);
-                ctx.rotate(-0.45  * (Math.PI/180) * fNRotation)
-                ctx.translate(-canvas.width/2, -canvas.height/2);
-                ctx.drawImage(img, x, y, imgX, imgY);
-                
-                //update quote-box position as well
-                contY = Math.sqrt((window.innerWidth*window.innerHeight)/(1435*716)) * 170;
-                contX = contY * (280/170);
-            
-                hContainer.style.width = contX + "px";
-                hContainer.style.height = contY + "px";
-                
-                hContainer.style.top = (window.innerHeight/2 - parseInt(hContainer.style.height)/1.7) + "px";
-                hContainer.style.left = (window.innerWidth/2 - parseInt(hContainer.style.width)/2) + "px";  
-            }
             
             var cors = "https://cors-anywhere.herokuapp.com/"
             var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en"
@@ -199,62 +175,8 @@
                         twitButton.style.opacity -= -0.05;
                     }
                 }
+            }        
 
-                //canvas rotation stuff
-
-                
-                startRotation();
-                var i3;
-
-                function startRotation() 
-                {
-
-                    var nRotation = 0;
-                    var interval = 25;
-                    setTimeout(rotateDragon, 25);
-
-                    function rotateDragon() 
-                    {
-                        
-                        nRotation += 1
-                        fNRotation = nRotation;
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        ctx.translate(canvas.width/2, canvas.height/2);
-                        ctx.rotate(-0.45  * (Math.PI/180))
-                        ctx.translate(-canvas.width/2, -canvas.height/2);
-                        ctx.drawImage(img, x, y, imgX, imgY);
-                        
-                        if(nRotation <= 55)
-                        {
-                            interval-= 0.10;
-                        }
-                        else if(nRotation > 55 && nRotation <= 80 )
-                        {
-                            interval-= 0.20;    
-                        }
-                        else if (nRotation > 80 && nRotation <= 140)
-                        {
-                            interval-= 0.14;
-                        }
-                        else if (nRotation > 140 && nRotation <= 200)
-                        {
-                            interval+= 0.20;
-                        }
-                        else
-                        {
-                            interval+= 0.40;
-                        }
-                        
-                        if(nRotation <= 280)
-                        {
-                            setTimeout(rotateDragon, interval);    
-                        }
-                        
-
-                    }
-
-                }
-        }
         </script>        
     
     
