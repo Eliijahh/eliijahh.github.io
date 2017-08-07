@@ -116,7 +116,7 @@
                                 else
                                 {
                                     document.getElementById("quote-text").style.marginTop = "0px";
-                                    document.getElementById("quote-author").innerHTML = json.quoteAuthor;
+                                    document.getElementById("quote-author").innerHTML = "- " + json.quoteAuthor;
                                 }})
                 .then( () => {getMovin();})
                 .catch(e => {console.log(e.statusText);
