@@ -111,11 +111,10 @@
                 .then(json => { document.getElementById("quote-text").innerHTML = json.quoteText;
                                 if(json.quoteAuthor == "")
                                 {
-                                    document.getElementById("quote-text").style.marginTop = "25px";      
+                                    document.getElementById("quote-author").innerHTML = "- Anonymous";
                                 }
                                 else
                                 {
-                                    document.getElementById("quote-text").style.marginTop = "0px";
                                     document.getElementById("quote-author").innerHTML = "- " + json.quoteAuthor;
                                 }})
                 .then( () => {getMovin();})
