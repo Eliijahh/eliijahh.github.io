@@ -12,6 +12,7 @@
 #quote-author {
     opacity: 0;
     font-size: 2.0vmin;
+    font-style: italic;
     float: right;
 }
 
