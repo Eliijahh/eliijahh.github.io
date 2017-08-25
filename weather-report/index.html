@@ -1,11 +1,10 @@
 <html>
     <head>
-        <link type="text/css" rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="css/main.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
-        <script>
-
-        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typeit/4.4.0/typeit.js"></script>
 
     </head>
 
@@ -22,7 +21,7 @@
                             <img class="mx-auto d-block" src="assets/SleepyCatWithMouse2.gif">
                         </div>
                         <div class="col-12 align-self-end align-middle text-container">
-                            <p class="text">Meow! Please, share your location with us. And don't be afraid, cats are very good at keeping secrets!</p>
+                            <p class="text"></p>
                         </div>
                     </div>
                 </div>
@@ -33,24 +32,18 @@
         </div>
     </body>
 
-    <script type="text/javascript">
+    <script>
 
-        function httpGetAsync(theUrl, callback)
-        {
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function()
-            {
-                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-                    callback(xmlHttp.responseText);
-            }
-
-            xmlHttp.open("GET", theUrl, true); // true for asynchronous
-            xmlHttp.send(null);
-        }
+        //Using typeit typewriter effect to write the initial text
+        $(document).ready(function() {
+            $(".text").typeIt({
+                strings: "Meow! Please, share your location with us. And don't be afraid, cats are very good at keeping secrets!",
+                speed: 50,
+                cursor: false
+            });
+        });
 
 
     </script>
-
-
 
 </html>

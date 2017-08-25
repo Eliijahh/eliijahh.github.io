@@ -19,6 +19,7 @@ body {
 .text-container {
     border-style: solid;
     text-overflow: ellipsis;
+    min-height: 9vh;
 }
 
 p.text {
