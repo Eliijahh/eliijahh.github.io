@@ -35,13 +35,14 @@
     <script>
 
         //Using typeit typewriter effect to write the initial text
-        $(document).ready(function() {
-            $(".text").typeIt({
-                strings: "Meow! Please, share your location with us. And don't be afraid, cats are very good at keeping secrets!",
-                speed: 50,
-                cursor: false
-            });
-        });
+        $(".text").typeIt({
+            speed: 50,
+            cursor: false
+        })
+        .tiType("Meow! ")
+        .tiPause(1000)
+        .tiBreak()
+        .tiType("Please, share your location with us. And don't be afraid, cats are very good at keeping secrets!")
 
 
     </script>
