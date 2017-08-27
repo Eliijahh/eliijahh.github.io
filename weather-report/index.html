@@ -34,20 +34,28 @@
 
     <script>
 
-        //Using typeit typewriter effect to write the initial text
-        $(".text").typeIt({
-            speed: 30,
-            cursor: false,
-            callback: function(){
-                getLocation();
+        function checkAuthorizedGeolocation(){
+            if(typeof localStorage["authorizedGeolocation"] == "undefined" || localStorage["authorizedGeolocation"] == 0){
+                $(".text").typeIt({
+                    speed: 30,
+                    cursor: false,
+                    callback: function(){
+                        getLocation();
+                    }
+                })
+                .tiType("Meow! ")
+                .tiPause(1000)
+                .tiBreak()
+                .tiType("Please, share your location with us. Oh, and don't be afraid... ")
+                .tiPause(750)
+                .tiType("cats are very good at keeping secrets! :3")
+            }else{
+
             }
-        })
-        .tiType("Meow! ")
-        .tiPause(1000)
-        .tiBreak()
-        .tiType("Please, share your location with us. Oh, and don't be afraid... ")
-        .tiPause(750)
-        .tiType("cats are very good at keeping secrets! :3")
+        }
+
+        //Using typeit typewriter effect to write the initial text
+
 
         //Geolocation management
         function getLocation() {
@@ -59,6 +67,8 @@
             var latitude = pos.coords.latitude;
             var longitude = pos.coords.longitude;
 
+            localStorage["authorizedGeolocation"] = 1;
+
             $.get("https://fcc-weather-api.glitch.me/api/current?lat=" + latitude + "&lon=" + longitude, function(data, status){
                 weatherResponse = data;
             });
@@ -66,6 +76,8 @@
 
         //geolocation error handling if request not successfull
         function geoError(err) {
+            localStorage["authorizedGeolocation"] = 0;
+
             if(err == 1) {
                 //dosomething
             }
@@ -73,6 +85,8 @@
                 //dosomething
             }
         }
+
+        checkAuthorizedGeolocation();
 
     </script>
 
