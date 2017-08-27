@@ -35,7 +35,7 @@
     <script>
 
         function checkAuthorizedGeolocation(){
-            if(typeof localStorage["authorizedGeolocation"] == "undefined" || localStorage["authorizedGeolocation"] == 0){
+            if(typeof localStorage["authorizedGeolocation"] == "undefined"){
                 $(".text").typeIt({
                     speed: 30,
                     cursor: false,
@@ -49,6 +49,8 @@
                 .tiType("Please, share your location with us. Oh, and don't be afraid... ")
                 .tiPause(750)
                 .tiType("cats are very good at keeping secrets! :3")
+            }else if(localStorage["authorizedGeolocation"] == 0) {
+                getLocation();
             }else{
 
             }
@@ -76,14 +78,33 @@
 
         //geolocation error handling if request not successfull
         function geoError(err) {
-            localStorage["authorizedGeolocation"] = 0;
+            console.log(err);
 
-            if(err == 1) {
-                //dosomething
-            }
-            else if (err == 0 || err == 2 || err == 3) {
-                //dosomething
-            }
+            if(err.code == 1) {
+                localStorage["authorizedGeolocation"] = 0;
+
+                $(".text").typeIt({
+                    speed: 30,
+                    cursor: false,
+                })
+                .tiDelete()
+                .tiType("Meouuw! :( ")
+                .tiBreak()
+                .tiType("We are a bit sad you haven't accepted to share your location.")
+                .tiBreak()
+                .tiType("But still, if you change your mind, follow the instructions in this link: ")
+                .tiType("<a href='https://support.google.com/chrome/answer/142065?hl=en'>Google instructions to share location</a>")
+
+
+            } else if (err == 0 || err == 2 || err == 3) {
+                $(".text").typeIt({
+                    speed: 30,
+                    cursor: false,
+                })
+                .tiDelete()
+                .tiType("There has been an error.")
+                .tiBreak()
+                .tiType("Please, refresh the page to accept the Geo Location request!")
         }
 
         checkAuthorizedGeolocation();
