@@ -46,6 +46,32 @@
         .tiPause(750)
         .tiType("cats are very good at keeping secrets! :3")
 
+        //Geolocation management
+        function getLocation() {
+            navigator.geolocation.getCurrentPosition(sendLocation, geoError);
+        }
+
+        //geolocation callback if successfull
+        function sendLocation(pos) {
+            var latitude = pos.coords.latitude;
+            var longitude = pos.coords.longitude;
+
+            $.get("https://fcc-weather-api.glitch.me/api/current?lat=" + latitude + "&lon=" + longitude, function(data, status){
+                weatherResponse = data;
+            });
+        }
+
+        //geolocation error handling if request not successfull
+        function geoError(err) {
+            if(err == 1) {
+                //dosomething
+            }
+            else if (err == 0 || err == 2 || err == 3) {
+                //dosomething
+            }
+        }
+
+        getLocation();
 
     </script>
 
