@@ -35,16 +35,20 @@
     <script>
 
         //Using typeit typewriter effect to write the initial text
-        $(".text").typeIt({
-            speed: 50,
-            cursor: false
-        })
-        .tiType("Meow! ")
-        .tiPause(1000)
-        .tiBreak()
-        .tiType("Please, share your location with us. Oh, and don't be afraid... ")
-        .tiPause(750)
-        .tiType("cats are very good at keeping secrets! :3")
+        function typeThen(callback) {
+            $(".text").typeIt({
+                speed: 30,
+                cursor: false
+            })
+            .tiType("Meow! ")
+            .tiPause(1000)
+            .tiBreak()
+            .tiType("Please, share your location with us. Oh, and don't be afraid... ")
+            .tiPause(750)
+            .tiType("cats are very good at keeping secrets! :3")
+
+            callback && callback();
+        }
 
         //Geolocation management
         function getLocation() {
@@ -71,7 +75,9 @@
             }
         }
 
-        getLocation();
+        typeThen(function(){
+            getLocation();
+        });
 
     </script>
 
