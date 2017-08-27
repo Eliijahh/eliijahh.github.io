@@ -33,81 +33,91 @@
     </body>
 
     <script>
+        var weatherResponse;
 
-        function checkAuthorizedGeolocation(){
-            if(typeof localStorage["authorizedGeolocation"] == "undefined"){
-                $(".text").typeIt({
-                    speed: 30,
-                    cursor: false,
-                    callback: function(){
-                        getLocation();
-                    }
-                })
-                .tiType("Meow! ")
-                .tiPause(1000)
-                .tiBreak()
-                .tiType("Please, share your location with us. Oh, and don't be afraid... ")
-                .tiPause(750)
-                .tiType("cats are very good at keeping secrets! :3")
-            }else if(localStorage["authorizedGeolocation"] == 0) {
-                getLocation();
-            }else{
+        function manageGeolocation(callback){
 
+            //Check if the user has already been on the page, accepted the geolocation request or not
+            function checkAuthorizedGeolocation(){
+                if(typeof localStorage["authorizedGeolocation"] == "undefined"){
+                    $(".text").typeIt({
+                        speed: 30,
+                        cursor: false,
+                        callback: function(){
+                            getLocation();
+                        }
+                    })
+                    .tiType("Meow! ")
+                    .tiPause(1000)
+                    .tiBreak()
+                    .tiType("Please, share your location with us. Oh, and don't be afraid... ")
+                    .tiPause(750)
+                    .tiType("cats are very good at keeping secrets! :3")
+                }else if(localStorage["authorizedGeolocation"] == 0) {
+                    getLocation();
+                }else if(localStorage["authorizedGeolocation"] == 1){
+
+                }
+            }
+
+            //Geolocation management
+            function getLocation() {
+                navigator.geolocation.getCurrentPosition(sendLocation, geoError);
+            }
+
+            //geolocation callback if successfull
+            function sendLocation(pos) {
+                var latitude = pos.coords.latitude;
+                var longitude = pos.coords.longitude;
+
+                localStorage["authorizedGeolocation"] = 1;
+
+                $.get("https://fcc-weather-api.glitch.me/api/current?lat=" + latitude + "&lon=" + longitude, function(data, status){
+                    weatherResponse = data;
+                });
+                callback();
+            }
+
+            //geolocation error handling if request not successfull
+            function geoError(err) {
+                console.log(err);
+
+                if(err.code == 1) {
+                    localStorage["authorizedGeolocation"] = 0;
+
+                    $(".text").typeIt({
+                        speed: 30,
+                        cursor: false,
+                    })
+                    .tiDelete()
+                    .tiType("Meouuw! :( ")
+                    .tiBreak()
+                    .tiType("We are a bit sad you haven't accepted to share your location.")
+                    .tiBreak()
+                    .tiType("But still, if you change your mind, follow the instructions in this link: ")
+                    .tiType("<a href='https://support.google.com/chrome/answer/142065?hl=en'>Google instructions to share location</a>")
+
+
+                } else if (err == 0 || err == 2 || err == 3) {
+                    $(".text").typeIt({
+                        speed: 30,
+                        cursor: false,
+                    })
+                    .tiDelete()
+                    .tiType("There has been an error.")
+                    .tiBreak()
+                    .tiType("Please, refresh the page to accept the Geo Location request!")
+                }
             }
         }
 
-        //Using typeit typewriter effect to write the initial text
-
-
-        //Geolocation management
-        function getLocation() {
-            navigator.geolocation.getCurrentPosition(sendLocation, geoError);
+        function manageWeather(){
+            
         }
 
-        //geolocation callback if successfull
-        function sendLocation(pos) {
-            var latitude = pos.coords.latitude;
-            var longitude = pos.coords.longitude;
-
-            localStorage["authorizedGeolocation"] = 1;
-
-            $.get("https://fcc-weather-api.glitch.me/api/current?lat=" + latitude + "&lon=" + longitude, function(data, status){
-                weatherResponse = data;
-            });
-        }
-
-        //geolocation error handling if request not successfull
-        function geoError(err) {
-            console.log(err);
-
-            if(err.code == 1) {
-                localStorage["authorizedGeolocation"] = 0;
-
-                $(".text").typeIt({
-                    speed: 30,
-                    cursor: false,
-                })
-                .tiDelete()
-                .tiType("Meouuw! :( ")
-                .tiBreak()
-                .tiType("We are a bit sad you haven't accepted to share your location.")
-                .tiBreak()
-                .tiType("But still, if you change your mind, follow the instructions in this link: ")
-                .tiType("<a href='https://support.google.com/chrome/answer/142065?hl=en'>Google instructions to share location</a>")
-
-
-            } else if (err == 0 || err == 2 || err == 3) {
-                $(".text").typeIt({
-                    speed: 30,
-                    cursor: false,
-                })
-                .tiDelete()
-                .tiType("There has been an error.")
-                .tiBreak()
-                .tiType("Please, refresh the page to accept the Geo Location request!")
-        }
-
-        checkAuthorizedGeolocation();
+        manageGeolocation(function(){
+            manageWeather();
+        });
 
     </script>
 
