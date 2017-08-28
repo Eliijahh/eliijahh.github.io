@@ -53,16 +53,32 @@
                     .tiType("Please, share your location with us. Oh, and don't be afraid... ")
                     .tiPause(750)
                     .tiType("cats are very good at keeping secrets! :3")
-                }else if(localStorage["authorizedGeolocation"] == 0) {
+                }else if(localStorage["authorizedGeolocation"] == 0){
                     getLocation();
                 }else if(localStorage["authorizedGeolocation"] == 1){
-
+                    $(".text").typeIt({
+                        speed: 30,
+                        cursor: false,
+                        callback: function(){
+                            getLocation();
+                        }
+                    })
+                    .tiType("Meow! ")
+                    .tiPause(1000)
+                    .tiBreak()
+                    .tiType("Welcome back. We have a thousands cats tracking you, the wait will be short!")
                 }
             }
 
             //Geolocation management
             function getLocation() {
-                navigator.geolocation.getCurrentPosition(sendLocation, geoError);
+                var options = {
+                    enableHighAccuracy: true,
+                    timeout : 5000,
+                    maximumAge: 0
+                }
+
+                navigator.geolocation.getCurrentPosition(sendLocation, geoError, options);
             }
 
             //geolocation callback if successfull
@@ -74,8 +90,8 @@
 
                 $.get("https://fcc-weather-api.glitch.me/api/current?lat=" + latitude + "&lon=" + longitude, function(data, status){
                     weatherResponse = data;
+                    callback();
                 });
-                callback();
             }
 
             //geolocation error handling if request not successfull
@@ -109,15 +125,15 @@
                     .tiType("Please, refresh the page to accept the Geo Location request!")
                 }
             }
+
+            checkAuthorizedGeolocation();
         }
 
         function manageWeather(){
-            
+            console.log(weatherResponse);
         }
 
-        manageGeolocation(function(){
-            manageWeather();
-        });
+        manageGeolocation(manageWeather);
 
     </script>
 
