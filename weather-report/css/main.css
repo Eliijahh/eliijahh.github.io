@@ -6,6 +6,7 @@ body {
     border-style: solid;
     width: auto;
     height: 45%;
+    overflow: hidden;
 }
 
 .gif-container {
@@ -15,10 +16,8 @@ body {
 
 .text-container {
     border-top-style: solid;
-    text-overflow: ellipsis;
-    min-height: 9vh;
 }
 
 p.text {
-    margin-top: 2vh;
+    margin-top: 3%;
 }
