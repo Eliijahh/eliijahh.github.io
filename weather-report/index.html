@@ -16,17 +16,13 @@
         <div class="container-fluid">
             <div class="row align-items-center h-100">
                 <div class="col"></div>
-                <div class="col">
-                    <div class="row">
-                        <div class="col main-container">
-                            <div class="row">
-                                <div class="col-12 gif-container">
-                                    <img class="mx-auto d-block" src="assets/SleepyCatWithMouse2.gif">
-                                </div>
-                                <div class="col-12 align-self-end align-middle text-container">
-                                    <p class="text"></p>
-                                </div>
-                            </div>
+                <div class="col main-container">
+                    <div class="row row-delete">
+                        <div class="col-12 gif-container">
+                            <img class="mx-auto d-block" src="assets/SleepyCatWithMouse2.gif">
+                        </div>
+                        <div class="col-12 align-self-end align-middle text-container">
+                            <p class="text"></p>
                         </div>
                     </div>
                 </div>
@@ -138,17 +134,25 @@
 
         //function to manage the weather report page
         function manageWeather(){
-        /*
-            $(".gif-container").animate({
-                opacity: 0
-            }, { duration:200, queue: false});
-            $(".text-container").animate({
-                opacity: 0
-            }, { duration:200, queue: false});
 
-            $(".gif-container").remove();
-            $(".text-container").remove();
-        */    
+            $(".gif-container, .text-container").animate({
+                opacity: 0
+            }, 1000, function(){
+                $(".row-delete").remove();
+                $(this).remove(resizeMainContainer());
+            });
+
+            function resizeMainContainer(){
+                $(".main-container").animate({
+                    height: "80%"
+                }, function(){
+                    $(".main-container").animate({
+                        width: "80%"
+                    });
+                });
+            }
+
+
         }
 
         manageGeolocation(manageWeather);
