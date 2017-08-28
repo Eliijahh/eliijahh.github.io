@@ -2,17 +2,19 @@ body {
 
 }
 
-.gif-container{
+.main-container {
+    border-style: solid;
+    width: auto;
+    height: 45%;
+}
+
+.gif-container {
     padding-top: 10vh;
     padding-bottom: 5vh;
-    border-top-style: solid;
-    border-left-style: solid;
-    border-right-style: solid;
-
 }
 
 .text-container {
-    border-style: solid;
+    border-top-style: solid;
     text-overflow: ellipsis;
     min-height: 9vh;
 }

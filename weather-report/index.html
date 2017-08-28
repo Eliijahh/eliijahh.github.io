@@ -17,12 +17,16 @@
             <div class="row align-items-center h-100">
                 <div class="col"></div>
                 <div class="col">
-                    <div class="row main-container">
-                        <div class="col-12 gif-container">
-                            <img class="mx-auto d-block" src="assets/SleepyCatWithMouse2.gif">
-                        </div>
-                        <div class="col-12 align-self-end align-middle text-container">
-                            <p class="text"></p>
+                    <div class="row">
+                        <div class="col main-container">
+                            <div class="row">
+                                <div class="col-12 gif-container">
+                                    <img class="mx-auto d-block" src="assets/SleepyCatWithMouse2.gif">
+                                </div>
+                                <div class="col-12 align-self-end align-middle text-container">
+                                    <p class="text"></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -134,7 +138,8 @@
 
         //function to manage the weather report page
         function manageWeather(){
-            console.log(weatherResponse);
+            $(".gif-container").remove();
+            $(".text-container").remove();
         }
 
         manageGeolocation(manageWeather);
