@@ -134,6 +134,7 @@
         //function to manage the weather report page
         function manageWeather(){
 
+            //fade-out effect from loading interface
             $(".gif-container, .text-container").animate({
                 opacity: 0
             }, 1000, function(){
@@ -141,6 +142,7 @@
                 $(this).remove(resizeMainContainer());
             });
 
+            //jQueryUI function to animate the main-container resize
             function resizeMainContainer(){
                 $(".main-container").animate({
                     height: "80%"
