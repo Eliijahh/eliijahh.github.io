@@ -18,7 +18,7 @@
             <div class="row align-items-center h-100">
                 <div class="col"></div>
                 <div class="col main-container">
-                    <div class="row row-delete">
+                    <div class="row row-change1">
                         <div class="col-12 gif-container">
                             <img class="mx-auto d-block" src="assets/SleepyCatWithMouse2.gif">
                         </div>
@@ -41,6 +41,7 @@
 
             //Check if the user has already been on the page, accepted the geolocation request or not
             function checkAuthorizedGeolocation(){
+
                 if(typeof localStorage["authorizedGeolocation"] == "undefined"){
                     $(".text").typeIt({
                         speed: 30,
@@ -76,7 +77,7 @@
             function getLocation() {
                 var options = {
                     enableHighAccuracy: true,
-                    timeout : 5000,
+                    timeout : 10000,
                     maximumAge: 0
                 }
 
@@ -135,10 +136,14 @@
         function manageWeather(){
 
             //fade-out effect from loading interface
-            $(".gif-container, .text-container").animate({
+            $(".gif-container").animate({
                 opacity: 0
             }, 1000, function(){
-                $(".row-delete").remove();
+                $(this).remove();
+            });
+            $(".text-container").animate({
+                opacity: 0
+            }, 1000, function(){
                 $(this).remove(resizeMainContainer());
             });
 
@@ -147,14 +152,20 @@
                 $(".main-container").animate({
                     height: "80%"
                 });
-                $(".main-container").switchClass("col", "col-9");
-
+                $(".main-container").switchClass("col", "col-9", addElements());
             }
 
+            //adding columns to row
+            function addElements(){
 
+                $(".row-change1").append("<div class='col-2'>col2</div>")
+                    .append("<div class='col-9'>col9</div>")
+                    .append("<div class='col-1'>col1</div>")
+            }
         }
 
-        manageGeolocation(manageWeather);
+        manageWeather();
+        //manageGeolocation(manageWeather);
 
     </script>
 
