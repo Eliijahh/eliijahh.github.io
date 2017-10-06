@@ -159,13 +159,21 @@
             function addElements(){
 
                 $(".row-change1").append("<div class='col-2'>col2</div>")
-                    .append("<div class='col-9'>col9</div>")
+                    .append("<div class='col-9 text-center'>col9</div>")
                     .append("<div class='col-1'>col1</div>")
+
+                $(".col-9").append("<h1 class='location'>London, United Kingdom</h1>");
+                $(".col-9").append("<h4 class='time'>18:15 GMT</h4>");
+                $(".col-9").append("<h2 class='time'>Cloudy</h2>");
+                $(".col-9").append("<h2 class='time'>Icon</h2>");
+                $(".col-9").append("<h3 class='time'>Broken Clouds</h3>");
+
+
             }
         }
 
-        manageWeather();
-        //manageGeolocation(manageWeather);
+        //manageWeather();
+        manageGeolocation(manageWeather);
 
     </script>
 
