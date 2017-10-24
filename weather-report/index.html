@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
         <link type="text/css" rel="stylesheet" href="css/main.css">
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
@@ -157,9 +157,8 @@
 
             //adding columns to row
             function addElements(){
-
                 $(".row-change1").append("<div class='col-2'>col2</div>")
-                    .append("<div class='col-9 text-center'>col9</div>")
+                    .append("<div class='col-9 h-100 d-flex flex-column justify-content-center text-center'>col9</div>")
                     .append("<div class='col-1'>col1</div>")
 
                 $(".col-9").append("<h1 class='location'>London, United Kingdom</h1>");
