@@ -159,10 +159,21 @@
             function addElements(){
                 $(".row-change1").append("<div class='col-2'>col2</div>")
                     .append("<div class='col-9 h-100 d-flex flex-column justify-content-center text-center'>col9</div>")
-                    .append("<div class='col-1'>col1</div>")
 
-                $(".col-9").append("<h1 class='location'>London, United Kingdom</h1>");
-                $(".col-9").append("<h4 class='time'>18:15 GMT</h4>");
+                //writing location for jSON for country and neighbourhood
+                $(".col-9").append("<h1 class='location'>" + weatherResponse.name + ", " + weatherResponse.sys.country + "</h1>");
+
+                //Time management to both increase the time each second and to assign time and day month and year to divs
+                var localTime = new Date();
+                $(".col-9").append("<h4 class='date'>" + localTime.toUTCString().slice(0, 16) +"</h4>");
+
+                $(".col-9").append("<h4 class='time'>" + localTime.toLocaleTimeString() +"</h4>");
+                var timeNeverStops = setInterval(function(){
+                    localTime.setSeconds(localTime.getSeconds() + 1);
+                    $(".time").text(localTime.toLocaleTimeString());
+                }, 1000);
+
+                
                 $(".col-9").append("<h2 class='time'>Cloudy</h2>");
                 $(".col-9").append("<h2 class='time'>Icon</h2>");
                 $(".col-9").append("<h3 class='time'>Broken Clouds</h3>");
