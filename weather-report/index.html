@@ -3,6 +3,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
         <link type="text/css" rel="stylesheet" href="css/main.css">
+        <link type="text/css" rel="stylesheet" href="css/weather-icons.css">
+        <link type="text/css" rel="stylesheet" href="css/weather-icons-wind.css">
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
 
@@ -173,15 +175,71 @@
                     $(".time").text(localTime.toLocaleTimeString());
                 }, 1000);
 
-                
-                $(".col-9").append("<h2 class='time'>Cloudy</h2>");
+                //Set the icon for the weather, depending on the weatherResponse.weather[0].main and whether it's day or night
+                if(localTime.getTime() >= (weatherResponse.sys.sunrise * 1000)
+                    && localTime.getTime() <= (weatherResponse.sys.sunset * 1000)) {
+
+                    switch(weatherResponse.weather[0].main) {
+                        case 'Drizzle':
+                            $(".col-9").append("<i class=\"wi wi-day-sprinkle\"></i>");
+                            break;
+                        case 'Haze' :
+                            $(".col-9").append("<i class=\"wi wi-day-haze\"></i>");
+                            break;
+                        case 'Mist' :
+                            $(".col-9").append("<i class=\"wi wi-day-fog\"></i>");
+                            break;
+                        case 'Clouds':
+                            $(".col-9").append("<i class=\"wi wi-day-cloudy\"></i>");
+                            break;
+                        case 'Rain':
+                            $(".col-9").append("<i class=\"wi wi-day-rain\"></i>");
+                            break;
+                        case 'Snow':
+                            $(".col-9").append("<i class=\"wi wi-day-snow\"></i>");
+                            break;
+                        case 'Clear':
+                            $(".col-9").append("<i class=\"wi wi-day-clear\"></i>");
+                            break;
+                        case 'Thunderstom':
+                            $(".col-9").append("<i class=\"wi wi-day-thunderstorm\"></i>");
+                            break;
+                    }
+                } else {
+                    switch(weatherResponse.weather[0].main) {
+                        case 'Drizzle':
+                            $(".col-9").append("<i class=\"wi wi-night-sprinkle\"></i>");
+                            break;
+                        case 'Haze' :
+                            $(".col-9").append("<i class=\"wi wi-night-haze\"></i>");
+                            break;
+                        case 'Mist' :
+                            $(".col-9").append("<i class=\"wi wi-night-fog\"></i>");
+                            break;
+                        case 'Clouds':
+                            $(".col-9").append("<i class=\"wi wi-night-cloudy\"></i>");
+                            break;
+                        case 'Rain':
+                            $(".col-9").append("<i class=\"wi wi-night-rain\"></i>");
+                            break;
+                        case 'Snow':
+                            $(".col-9").append("<i class=\"wi wi-night-snow\"></i>");
+                            break;
+                        case 'Clear':
+                            $(".col-9").append("<i class=\"wi wi-night-clear\"></i>");
+                            break;
+                        case 'Thunderstom':
+                            $(".col-9").append("<i class=\"wi wi-night-thunderstorm\"></i>");
+                            break;
+                    }
+                }
+                $(".col-9").append("<h2 class='weather'>Cloudy</h2>");
                 $(".col-9").append("<h2 class='time'>Icon</h2>");
                 $(".col-9").append("<h3 class='time'>Broken Clouds</h3>");
 
 
             }
         }
-
         //manageWeather();
         manageGeolocation(manageWeather);
 
