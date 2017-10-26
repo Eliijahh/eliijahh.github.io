@@ -153,8 +153,11 @@
             function resizeMainContainer(){
                 $(".main-container").animate({
                     height: "80%"
+                }, function(){
+                    $(".main-container").switchClass("col", "col-9", function(){
+                        addElements();
+                    });
                 });
-                $(".main-container").switchClass("col", "col-9", addElements());
             }
 
             //adding columns to row
@@ -248,7 +251,6 @@
                         $(".temperature").children(".temperatureToggle").html(" °C");
                     }
                 });
-                $(".col-9").append("<h3 class='time'>Broken Clouds</h3>");
 
 
             }
