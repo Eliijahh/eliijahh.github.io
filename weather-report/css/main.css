@@ -21,3 +21,7 @@ body {
 p.text {
     margin-top: 3%;
 }
+
+.temperatureToggle:hover {
+    text-decoration: none;
+}
