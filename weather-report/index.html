@@ -162,12 +162,12 @@
 
             //adding columns to row
             function addElements(){
-                $(".row-change1").append("<div class='col-3'><div class='weaimage'></div></div>")
+                $(".row-change1").append("<div class='col-3 weaimage'></div>")
                     .append("<div class='col-9 h-100 weatherText'></div>")
 
                 //add world map and weather-cat images to col-3
-                $(".weaimage").append("<img class='img-responsive' src='assets/chronotrigger-map.png'>")
-                    .append("<img class='img-responsive' src='assets/boicatnobg.png'>")
+                //.append("<img class='map img-responsive' src='assets/chronotrigger-map.png'>")
+                $(".weaimage").append("<img class='cat' src='assets/boicatnobg.png'>")
 
                 //Time management to both increase the time each second and to assign time and day month and year to divs
                 var localTime = new Date();
