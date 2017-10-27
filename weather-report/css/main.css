@@ -21,8 +21,15 @@ body {
 }
 
 .gif-container {
+    display: flex;
+    justify-content: center;
     padding-top: 10vh;
     padding-bottom: 5vh;
+}
+
+img.gif-cat {
+    max-width: 100vw;
+    height: auto;
 }
 
 .text-container {
