@@ -17,7 +17,7 @@
     <body>
 
         <div class="container-fluid">
-            <div class="row align-items-center h-100">
+            <div class="row main-row align-items-center h-100">
                 <div class="col"></div>
                 <div class="col main-container">
                     <div class="row row-change1">
@@ -162,85 +162,91 @@
 
             //adding columns to row
             function addElements(){
-                $(".row-change1").append("<div class='col-2'>col2</div>")
-                    .append("<div class='col-9 h-100 d-flex flex-column justify-content-center text-center'>col9</div>")
+                $(".row-change1").append("<div class='col-3'><div class='weaimage'></div></div>")
+                    .append("<div class='col-9 h-100 weatherText'></div>")
 
-                //writing location for jSON for country and neighbourhood
-                $(".col-9").append("<h1 class='location'>" + weatherResponse.name + ", " + weatherResponse.sys.country + "</h1>");
+                //add world map and weather-cat images to col-3
+                $(".weaimage").append("<img class='img-responsive' src='assets/chronotrigger-map.png'>")
+                    .append("<img class='img-responsive' src='assets/boicatnobg.png'>")
 
                 //Time management to both increase the time each second and to assign time and day month and year to divs
                 var localTime = new Date();
-                $(".col-9").append("<h4 class='date'>" + localTime.toUTCString().slice(0, 16) +"</h4>");
+                $(".weatherText").append("<p class='date wea'>" + localTime.toUTCString().slice(0, 16) +"</p>");
 
-                $(".col-9").append("<h4 class='time'>" + localTime.toLocaleTimeString() +"</h4>");
+                $(".weatherText").append("<p class='time wea'>" + localTime.toLocaleTimeString() +"</p>");
                 var timeNeverStops = setInterval(function(){
                     localTime.setSeconds(localTime.getSeconds() + 1);
                     $(".time").text(localTime.toLocaleTimeString());
                 }, 1000);
 
+                //writing location for jSON for country and neighbourhood
+                $(".weatherText").append("<p class='location wea'>" + weatherResponse.name + ", " + weatherResponse.sys.country + "</p>");
+
+
+
                 //Set the icon for the weather, depending on the weatherResponse.weather[0].main and whether it's day or night
                 if(localTime.getTime() >= (weatherResponse.sys.sunrise * 1000) && localTime.getTime() <= (weatherResponse.sys.sunset * 1000)) {
                     switch(weatherResponse.weather[0].main) {
                         case 'Drizzle':
-                            $(".col-9").append("<i class=\"wi wi-day-sprinkle\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-day-sprinkle\"></i>");
                             break;
                         case 'Haze' :
-                            $(".col-9").append("<i class=\"wi wi-day-haze\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-day-haze\"></i>");
                             break;
                         case 'Mist' :
-                            $(".col-9").append("<i class=\"wi wi-day-fog\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-day-fog\"></i>");
                             break;
                         case 'Clouds':
-                            $(".col-9").append("<i class=\"wi wi-day-cloudy\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-day-cloudy\"></i>");
                             break;
                         case 'Rain':
-                            $(".col-9").append("<i class=\"wi wi-day-rain\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-day-rain\"></i>");
                             break;
                         case 'Snow':
-                            $(".col-9").append("<i class=\"wi wi-day-snow\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-day-snow\"></i>");
                             break;
                         case 'Clear':
-                            $(".col-9").append("<i class=\"wi wi-day-clear\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-day-sunny\"></i>");
                             break;
                         case 'Thunderstom':
-                            $(".col-9").append("<i class=\"wi wi-day-thunderstorm\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-day-thunderstorm\"></i>");
                             break;
                     }
                 } else {
                     switch(weatherResponse.weather[0].main) {
                         case 'Drizzle':
-                            $(".col-9").append("<i class=\"wi wi-night-sprinkle\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-night-sprinkle\"></i>");
                             break;
                         case 'Haze' :
-                            $(".col-9").append("<i class=\"wi wi-night-haze\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-night-haze\"></i>");
                             break;
                         case 'Mist' :
-                            $(".col-9").append("<i class=\"wi wi-night-fog\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-night-fog\"></i>");
                             break;
                         case 'Clouds':
-                            $(".col-9").append("<i class=\"wi wi-night-cloudy\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-night-cloudy\"></i>");
                             break;
                         case 'Rain':
-                            $(".col-9").append("<i class=\"wi wi-night-rain\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-night-rain\"></i>");
                             break;
                         case 'Snow':
-                            $(".col-9").append("<i class=\"wi wi-night-snow\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-night-snow\"></i>");
                             break;
                         case 'Clear':
-                            $(".col-9").append("<i class=\"wi wi-night-clear\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-night-sunny\"></i>");
                             break;
                         case 'Thunderstom':
-                            $(".col-9").append("<i class=\"wi wi-night-thunderstorm\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-night-thunderstorm\"></i>");
                             break;
                     }
                 }
-                $(".col-9").append("<h2 class='weather'>" + weatherResponse.weather[0].main + "</h2>");
+                $(".weatherText").append("<p class='weather wea'>" + weatherResponse.weather[0].main + "</p>");
 
                 //Temperature and farenheit/celsius toggle management
                 var celsius = Math.round(weatherResponse.main.temp);
                 var farenheit = Math.round(celsius * (9/5) + 32);
 
-                $(".col-9").append("<h2 class='temperature'>" + Math.round(celsius)  + "<a class='temperatureToggle' href='#'> °C</a></h2>");
+                $(".weatherText").append("<p class='temperature wea'>" + Math.round(celsius)  + "<a class='temperatureToggle' href='#'> °C</a></p>");
 
                 $(".temperatureToggle").on("click", function(){
                     if($(this).html() == " °C") {
@@ -251,7 +257,6 @@
                         $(".temperature").children(".temperatureToggle").html(" °C");
                     }
                 });
-
 
             }
         }
