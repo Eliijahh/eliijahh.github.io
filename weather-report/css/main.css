@@ -3,10 +3,38 @@
     src: url("font/gameboy.ttf");
 }
 
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
     font-family: "gameboy";
 }
 
+/*First part of page transition waiting for geolcation */
+.main-container {
+    border-style: solid;
+    width: auto;
+    min-height: 45%;
+    overflow: hidden;
+}
+
+.gif-container {
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+}
+
+.text-container {
+    border-top-style: solid;
+}
+
+p.text {
+    margin-top: 3%;
+    line-height: 20px;
+}
+
+/*CSS for weather page elements*/
 div.weatherText {
     display: flex;
     flex-direction: column;
@@ -47,27 +75,6 @@ p.location {
     margin-left: 2vw;
     width: 200%;
     height: auto;
-}
-
-.main-container {
-    border-style: solid;
-    width: auto;
-    height: 45%;
-    overflow: hidden;
-}
-
-.gif-container {
-    padding-top: 10vh;
-    padding-bottom: 5vh;
-}
-
-.text-container {
-    border-top-style: solid;
-}
-
-p.text {
-    margin-top: 3%;
-    line-height: 20px;
 }
 
 .temperatureToggle:hover {

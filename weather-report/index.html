@@ -20,7 +20,7 @@
 
     <body>
 
-        <div class="container-fluid">
+        <div class="container-fluid h-100">
             <div class="row main-row align-items-center h-100">
                 <div class="col"></div>
                 <div class="col main-container">
@@ -158,6 +158,7 @@
                 $(".main-container").animate({
                     height: "80%"
                 }, function(){
+                    $(".main-container").css("display", "flex");
                     $(".main-container").switchClass("col", "col-9", function(){
                         addElements();
                     });
@@ -166,8 +167,8 @@
 
             //adding columns to row
             function addElements(){
-                $(".row-change1").append("<div class='col-3 weaimage'></div>")
-                    .append("<div class='col-9 h-100 weatherText'></div>")
+                $(".row-change1").append("<div class='col-4 weaimage'></div>")
+                    .append("<div class='col-8 h-100 weatherText'></div>")
 
                 //add world map and weather-cat images to col-3
                 //.append("<img class='map img-responsive' src='assets/chronotrigger-map.png'>")
@@ -237,7 +238,7 @@
                             $(".weatherText").append("<i class=\"wi wi-night-snow\"></i>");
                             break;
                         case 'Clear':
-                            $(".weatherText").append("<i class=\"wi wi-night-sunny\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-night-clear\"></i>");
                             break;
                         case 'Thunderstom':
                             $(".weatherText").append("<i class=\"wi wi-night-thunderstorm\"></i>");
