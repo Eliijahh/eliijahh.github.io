@@ -15,12 +15,13 @@ div.weatherText {
 }
 
 i, p.wea {
-    font-size: 8vh;
-    line-height: 60px;
+    font-size: 11vh;
+    line-height: 80px;
 }
 
 p.temperature {
     font-size: 8vh;
+    line-height: 10px;
 }
 
 p.time {
@@ -66,6 +67,7 @@ p.location {
 
 p.text {
     margin-top: 3%;
+    line-height: 20px;
 }
 
 .temperatureToggle:hover {
