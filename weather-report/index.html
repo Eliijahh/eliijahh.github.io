@@ -1,60 +1,268 @@
 <html>
     <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
         <link type="text/css" rel="stylesheet" href="css/main.css">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
-    
-    
-        <script>
-        
-        </script>
-    
+        <link type="text/css" rel="stylesheet" href="css/weather-icons.css">
+        <link type="text/css" rel="stylesheet" href="css/weather-icons-wind.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typeit/4.4.0/typeit.js"></script>
+
     </head>
 
 
 
     <body>
-        
-        <div class="container-fluid">
-            <div class="row">
-                <h1 id="title">Cat Weather Meow Report</h1>
-                <h1 id="title" style="font-size: 35px;">(a)Live at the tip of your Mouse!</h1> <br/>
-                <div class="col-md-1"></div>
-                <div class="col-md-4">
-                    <img class="img-rounded img-responsive" style="float: left; height:85%" src="assets/meteomeow.jpg">
-                </div>
-                <div class="col-md-6">    
-                    <h2 style="text-align:center; color: white;">Meow!</h2>
 
-                    <h2 style="text-align:center; color: white;">Weathercat is looking for you!</h2>
-                    <img class="img-rounded img-responsive" style="margin: auto;" src="assets/whereareyoucats.png">
-                    <h2 style="text-align:center; color: white;">We need to know where you're at to foreca(s)t!</h2>
-                    <h4 style="text-align:center; color: white;">(And don't worry, cats are really good at keeping secrets!)</h4>
+        <div class="container-fluid">
+            <div class="row main-row align-items-center h-100">
+                <div class="col"></div>
+                <div class="col main-container">
+                    <div class="row row-change1">
+                        <div class="col-12 gif-container">
+                            <img class="mx-auto d-block" src="assets/SleepyCatWithMouse2.gif">
+                        </div>
+                        <div class="col-12 align-self-end align-middle text-container">
+                            <p class="text"></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-1"></div>
-            
+                <div class="col"></div>
             </div>
-        
         </div>
     </body>
 
-    <script type="text/javascript">
-        
-        function httpGetAsync(theUrl, callback)
-        {
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function() 
-            { 
-                if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-                    callback(xmlHttp.responseText);
+    <script>
+        //Updated in manageGeolocation with the json response from the weather api
+        var weatherResponse;
+
+        //function to manage the initial interface and geolocation
+        function manageGeolocation(callback){
+
+            //Check if the user has already been on the page, accepted the geolocation request or not
+            function checkAuthorizedGeolocation(){
+
+                if(typeof localStorage["authorizedGeolocation"] == "undefined"){
+                    $(".text").typeIt({
+                        speed: 30,
+                        cursor: false,
+                        callback: function(){
+                            getLocation();
+                        }
+                    })
+                    .tiType("Meow! ")
+                    .tiPause(1000)
+                    .tiBreak()
+                    .tiType("Please, share your location with us. Oh, and don't be afraid... ")
+                    .tiPause(750)
+                    .tiType("cats are very good at keeping secrets! :3")
+                }else if(localStorage["authorizedGeolocation"] == 0){
+                    getLocation();
+                }else if(localStorage["authorizedGeolocation"] == 1){
+                    $(".text").typeIt({
+                        speed: 30,
+                        cursor: false,
+                        callback: function(){
+                            getLocation();
+                        }
+                    })
+                    .tiType("Meow! ")
+                    .tiPause(1000)
+                    .tiBreak()
+                    .tiType("Welcome back. We have thousands of cats tracking you, the wait will be short!")
+                }
             }
-            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-            xmlHttp.send(null);
+
+            //Geolocation management
+            function getLocation() {
+                var options = {
+                    enableHighAccuracy: true,
+                    timeout : 10000,
+                    maximumAge: 0
+                }
+
+                navigator.geolocation.getCurrentPosition(sendLocation, geoError, options);
+            }
+
+            //geolocation callback if successfull
+            function sendLocation(pos) {
+                var latitude = pos.coords.latitude;
+                var longitude = pos.coords.longitude;
+
+                localStorage["authorizedGeolocation"] = 1;
+
+                $.get("https://fcc-weather-api.glitch.me/api/current?lat=" + latitude + "&lon=" + longitude, function(data, status){
+                    weatherResponse = data;
+                    callback();
+                });
+            }
+
+            //geolocation error handling if request not successfull
+            function geoError(err) {
+                console.log(err);
+
+                if(err.code == 1) {
+                    localStorage["authorizedGeolocation"] = 0;
+
+                    $(".text").typeIt({
+                        speed: 30,
+                        cursor: false,
+                    })
+                    .tiDelete()
+                    .tiType("Meouuw! :( ")
+                    .tiBreak()
+                    .tiType("We are a bit sad you haven't accepted to share your location.")
+                    .tiBreak()
+                    .tiType("But still, if you change your mind, follow the instructions in this link: ")
+                    .tiType("<a href='https://support.google.com/chrome/answer/142065?hl=en'>Google instructions to share location</a>")
+
+
+                } else if (err == 0 || err == 2 || err == 3) {
+                    $(".text").typeIt({
+                        speed: 30,
+                        cursor: false,
+                    })
+                    .tiDelete()
+                    .tiType("There has been an error.")
+                    .tiBreak()
+                    .tiType("Please, refresh the page to accept the Geo Location request!")
+                }
+            }
+
+            checkAuthorizedGeolocation();
         }
 
+        //function to manage the weather report page
+        function manageWeather(){
+
+            //fade-out effect from loading interface
+            $(".gif-container").animate({
+                opacity: 0
+            }, 1000, function(){
+                $(this).remove();
+            });
+            $(".text-container").animate({
+                opacity: 0
+            }, 1000, function(){
+                $(this).remove(resizeMainContainer());
+            });
+
+            //jQueryUI function to animate the main-container resize
+            function resizeMainContainer(){
+                $(".main-container").animate({
+                    height: "80%"
+                }, function(){
+                    $(".main-container").switchClass("col", "col-9", function(){
+                        addElements();
+                    });
+                });
+            }
+
+            //adding columns to row
+            function addElements(){
+                $(".row-change1").append("<div class='col-3 weaimage'></div>")
+                    .append("<div class='col-9 h-100 weatherText'></div>")
+
+                //add world map and weather-cat images to col-3
+                //.append("<img class='map img-responsive' src='assets/chronotrigger-map.png'>")
+                $(".weaimage").append("<img class='cat' src='assets/boicatface.png'>")
+
+                //Time management to both increase the time each second and to assign time and day month and year to divs
+                var localTime = new Date();
+                $(".weatherText").append("<p class='date wea'>" + localTime.toUTCString().slice(0, 16) +"</p>");
+
+                $(".weatherText").append("<p class='time wea'>" + localTime.toLocaleTimeString() +"</p>");
+                var timeNeverStops = setInterval(function(){
+                    localTime.setSeconds(localTime.getSeconds() + 1);
+                    $(".time").text(localTime.toLocaleTimeString());
+                }, 1000);
+
+                //writing location for jSON for country and neighbourhood
+                $(".weatherText").append("<p class='location wea'>" + weatherResponse.name + ", " + weatherResponse.sys.country + "</p>");
+
+
+
+                //Set the icon for the weather, depending on the weatherResponse.weather[0].main and whether it's day or night
+                if(localTime.getTime() >= (weatherResponse.sys.sunrise * 1000) && localTime.getTime() <= (weatherResponse.sys.sunset * 1000)) {
+                    switch(weatherResponse.weather[0].main) {
+                        case 'Drizzle':
+                            $(".weatherText").append("<i class=\"wi wi-day-sprinkle\"></i>");
+                            break;
+                        case 'Haze' :
+                            $(".weatherText").append("<i class=\"wi wi-day-haze\"></i>");
+                            break;
+                        case 'Mist' :
+                            $(".weatherText").append("<i class=\"wi wi-day-fog\"></i>");
+                            break;
+                        case 'Clouds':
+                            $(".weatherText").append("<i class=\"wi wi-day-cloudy\"></i>");
+                            break;
+                        case 'Rain':
+                            $(".weatherText").append("<i class=\"wi wi-day-rain\"></i>");
+                            break;
+                        case 'Snow':
+                            $(".weatherText").append("<i class=\"wi wi-day-snow\"></i>");
+                            break;
+                        case 'Clear':
+                            $(".weatherText").append("<i class=\"wi wi-day-sunny\"></i>");
+                            break;
+                        case 'Thunderstom':
+                            $(".weatherText").append("<i class=\"wi wi-day-thunderstorm\"></i>");
+                            break;
+                    }
+                } else {
+                    switch(weatherResponse.weather[0].main) {
+                        case 'Drizzle':
+                            $(".weatherText").append("<i class=\"wi wi-night-sprinkle\"></i>");
+                            break;
+                        case 'Haze' :
+                            $(".weatherText").append("<i class=\"wi wi-night-haze\"></i>");
+                            break;
+                        case 'Mist' :
+                            $(".weatherText").append("<i class=\"wi wi-night-fog\"></i>");
+                            break;
+                        case 'Clouds':
+                            $(".weatherText").append("<i class=\"wi wi-night-cloudy\"></i>");
+                            break;
+                        case 'Rain':
+                            $(".weatherText").append("<i class=\"wi wi-night-rain\"></i>");
+                            break;
+                        case 'Snow':
+                            $(".weatherText").append("<i class=\"wi wi-night-snow\"></i>");
+                            break;
+                        case 'Clear':
+                            $(".weatherText").append("<i class=\"wi wi-night-sunny\"></i>");
+                            break;
+                        case 'Thunderstom':
+                            $(".weatherText").append("<i class=\"wi wi-night-thunderstorm\"></i>");
+                            break;
+                    }
+                }
+                $(".weatherText").append("<p class='weather wea'>" + weatherResponse.weather[0].main + "</p>");
+
+                //Temperature and farenheit/celsius toggle management
+                var celsius = Math.round(weatherResponse.main.temp);
+                var farenheit = Math.round(celsius * (9/5) + 32);
+
+                $(".weatherText").append("<p class='temperature wea'>" + Math.round(celsius)  + "<a class='temperatureToggle' href='#'> °C</a></p>");
+
+                $(".temperatureToggle").on("click", function(){
+                    if($(this).html() == " °C") {
+                        $(".temperature").contents()[0].nodeValue = farenheit;
+                        $(".temperature").children(".temperatureToggle").html(" °F");
+                    } else {
+                        $(".temperature").contents()[0].nodeValue = celsius;
+                        $(".temperature").children(".temperatureToggle").html(" °C");
+                    }
+                });
+
+            }
+        }
+        //manageWeather();
+        manageGeolocation(manageWeather);
 
     </script>
-
-
 
 </html>

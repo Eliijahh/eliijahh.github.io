@@ -1,9 +1,75 @@
-body {
-    background-color: #0a1612 !important;
+@font-face {
+    font-family: gameboy;
+    src: url("font/gameboy.ttf");
 }
 
-#title {
-    font-size: 60px;
-    text-align: center;
-    color: white;
+body {
+    font-family: "gameboy";
+}
+
+div.weatherText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+i, p.wea {
+    font-size: 11vh;
+    line-height: 80px;
+}
+
+p.temperature {
+    font-size: 8vh;
+    line-height: 10px;
+}
+
+p.time {
+    margin-bottom: 30px;
+}
+
+p.date, p.time {
+    font-size: 6vh;
+    line-height: 20px;
+}
+
+p.location {
+    font-size: 10vh;
+    line-height: 100px;
+}
+
+.weaimage {
+    display: flex;
+    align-items: flex-end;
+}
+
+.cat {
+    margin-left: 2vw;
+    width: 200%;
+    height: auto;
+}
+
+.main-container {
+    border-style: solid;
+    width: auto;
+    height: 45%;
+    overflow: hidden;
+}
+
+.gif-container {
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+}
+
+.text-container {
+    border-top-style: solid;
+}
+
+p.text {
+    margin-top: 3%;
+    line-height: 20px;
+}
+
+.temperatureToggle:hover {
+    text-decoration: none;
 }
