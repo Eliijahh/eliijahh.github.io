@@ -37,8 +37,15 @@ p.location {
     line-height: 100px;
 }
 
+.weaimage {
+    display: flex;
+    align-items: flex-end;
+}
+
 .cat {
-    margin-top: 220px
+    margin-left: 2vw;
+    width: 200%;
+    height: auto;
 }
 
 .main-container {
