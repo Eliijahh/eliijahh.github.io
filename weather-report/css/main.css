@@ -38,7 +38,8 @@ img.gif-cat {
 
 p.text {
     margin-top: 3%;
-    line-height: 20px;
+    line-height: 25px;
+    font-size: calc(18px + 0.5vw);
 }
 
 /*CSS for weather page elements*/
