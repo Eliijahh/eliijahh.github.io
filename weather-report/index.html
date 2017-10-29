@@ -22,7 +22,7 @@
 
         <div class="container-fluid h-100">
             <div class="row main-row align-items-center h-100">
-                <div class="col-sm-2 col-lg-4 col-1"></div>
+                <div class="col-sm-2 col-lg-4 col-1 main-cont-shrink"></div>
                 <div class="col-sm-8 col-lg-4 col-10 main-container">
                     <div class="row row-change1">
                         <div class="col-12 gif-container">
@@ -33,9 +33,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2 col-lg-4 col-1"></div>
+                <div class="col-sm-2 col-lg-4 col-1 main-cont-shrink"></div>
             </div>
         </div>
+
     </body>
 
     <script>
@@ -158,8 +159,10 @@
                 $(".main-container").animate({
                     height: "80%"
                 }, function(){
+                    //Change main-container to flex display, and then make the main-cont-shrink smaller and the main-container bigger for Laptop and pc
                     $(".main-container").css("display", "flex");
-                    $(".main-container").switchClass("col-sm-4", "col-sm-9", function(){
+                    $(".main-cont-shrink").switchClass("col-lg-4", "col-lg-2");
+                    $(".main-container").switchClass("col-lg-4", "col-lg-8", function(){
                         addElements();
                     });
                 });
@@ -170,8 +173,7 @@
                 $(".row-change1").append("<div class='col-4 order-2 weaimage'></div>")
                     .append("<div class='col-12 order-1 h-100 weatherText'></div>")
 
-                //add world map and weather-cat images to col-3
-                //.append("<img class='map img-responsive' src='assets/chronotrigger-map.png'>")
+                //add weather-cat images to col-3
                 $(".weaimage").append("<img class='cat' src='assets/boicatface.png'>")
 
                 //Time management to both increase the time each second and to assign time and day month and year to divs
