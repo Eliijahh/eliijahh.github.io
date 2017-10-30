@@ -56,7 +56,7 @@ div.weatherText {
 }
 
 /* Mobile viewport */
-@media screen and (max-width: 575px) {
+@media screen and (min-width: 0px) {
 
     p.date, p.time {
         font-size: 30px;
@@ -89,6 +89,45 @@ div.weatherText {
     .cat {
         margin-left: 10px;
         width: 250%;
+        height: auto;
+    }
+
+}
+
+/* Mobile landscape view */
+@media screen and (min-width: 640px) {
+
+    p.date, p.time {
+        font-size: 25px;
+        line-height: 10px;
+    }
+
+    p.date {
+        margin-top: 20px;
+    }
+
+    p.time {
+        margin-bottom: 15px;
+    }
+
+    p.location {
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    i, p.weather {
+        font-size: 35px;
+        line-height: 30px;
+    }
+
+    p.temperature {
+        font-size: 30px;
+        line-height: 0px;
+    }
+
+    .cat {
+        margin-left: 10px;
+        width: 100%;
         height: auto;
     }
 
