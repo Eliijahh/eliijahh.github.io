@@ -59,7 +59,7 @@ div.weatherText {
 @media screen and (min-width: 0px) {
 
     p.date, p.time {
-        font-size: 200%;
+        font-size: 30px;
         line-height: 20px;
     }
 
@@ -72,17 +72,17 @@ div.weatherText {
     }
 
     p.location {
-        font-size: 220%;
+        font-size: 40px;
         line-height: 50px;
     }
 
     i, p.weather {
-        font-size: 300%;
+        font-size: 60px;
         line-height: 80px;
     }
 
     p.temperature {
-        font-size: 280%;
+        font-size: 55px;
         line-height: 20px;
     }
 
@@ -98,8 +98,8 @@ div.weatherText {
 @media screen and (min-width: 640px) {
 
     p.date, p.time {
-        font-size: 150%;
-        line-height: 5px;
+        font-size: 25px;
+        line-height: 10px;
     }
 
     p.date {
@@ -111,18 +111,18 @@ div.weatherText {
     }
 
     p.location {
-        font-size: 200%;
+        font-size: 30px;
         line-height: 30px;
     }
 
     i, p.weather {
-        font-size: 280%;
+        font-size: 35px;
         line-height: 30px;
     }
 
     p.temperature {
-        font-size: 250%;
-        line-height: 10px;
+        font-size: 30px;
+        line-height: 0px;
     }
 
     .cat {
@@ -137,7 +137,7 @@ div.weatherText {
 @media screen and (min-width: 768px) {
 
     p.date, p.time {
-        font-size: 300%;
+        font-size: 50px;
         line-height: 35px;
     }
 
@@ -150,18 +150,18 @@ div.weatherText {
     }
 
     p.location {
-        font-size: 400%;
+        font-size: 70px;
         line-height: 50px;
         margin-bottom: 50px;
     }
 
     i, p.weather {
-        font-size: 500%;
+        font-size: 90px;
         line-height: 100px;
     }
 
     p.temperature {
-        font-size: 400%;
+        font-size: 80px;
         line-height: 20px;
         margin-top: 10px;
     }
@@ -178,7 +178,7 @@ div.weatherText {
 @media screen and (min-width: 992px) {
 
     p.date, p.time {
-        font-size: 300%;
+        font-size: 50px;
         line-height: 35px;
         margin-left: 30px;
     }
@@ -192,20 +192,20 @@ div.weatherText {
     }
 
     p.location {
-        font-size: 400%;
+        font-size: 60px;
         line-height: 50px;
         margin-left: 30px;
         margin-bottom: 30px;
     }
 
     i, p.weather {
-        font-size: 500%;
+        font-size: 80px;
         line-height: 80px;
         margin-left: 30px;
     }
 
     p.temperature {
-        font-size: 400%;
+        font-size: 60px;
         line-height: 20px;
         margin-left: 30px;
     }
