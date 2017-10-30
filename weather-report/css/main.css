@@ -3,6 +3,11 @@
     src: url("font/gameboy.ttf");
 }
 
+@font-face {
+    font-family: pokemon;
+    src: url("font/pokemon.ttf");
+}
+
 html {
     height: 100%;
 }
@@ -39,7 +44,7 @@ img.gif-cat {
 p.text {
     margin-top: 3%;
     line-height: 25px;
-    font-size: calc(18px + 0.5vw);
+    font-size: calc(16px + 0.5vw);
 }
 
 /*CSS for weather page elements*/
@@ -76,7 +81,7 @@ div.weatherText {
         line-height: 50px;
     }
 
-    i, p.weather {
+    i.wi, p.weather {
         font-size: 60px;
         line-height: 80px;
     }
@@ -115,7 +120,7 @@ div.weatherText {
         line-height: 30px;
     }
 
-    i, p.weather {
+    i.wi, p.weather {
         font-size: 35px;
         line-height: 30px;
     }
@@ -155,7 +160,7 @@ div.weatherText {
         margin-bottom: 50px;
     }
 
-    i, p.weather {
+    i.wi, p.weather {
         font-size: 90px;
         line-height: 100px;
     }
@@ -198,7 +203,7 @@ div.weatherText {
         margin-bottom: 30px;
     }
 
-    i, p.weather {
+    i.wi, p.weather {
         font-size: 80px;
         line-height: 80px;
         margin-left: 30px;
