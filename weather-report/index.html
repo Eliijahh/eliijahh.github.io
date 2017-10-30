@@ -1,5 +1,9 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
         <link type="text/css" rel="stylesheet" href="css/main.css">
@@ -16,22 +20,23 @@
 
     <body>
 
-        <div class="container-fluid">
+        <div class="container-fluid h-100">
             <div class="row main-row align-items-center h-100">
-                <div class="col"></div>
-                <div class="col main-container">
+                <div class="col-sm-2 col-lg-4 col-1 main-cont-shrink"></div>
+                <div class="col-sm-8 col-lg-4 col-10 main-container">
                     <div class="row row-change1">
                         <div class="col-12 gif-container">
-                            <img class="mx-auto d-block" src="assets/SleepyCatWithMouse2.gif">
+                            <img class="gif-cat img-responsive" src="assets/SleepyCatWithMouse2.gif">
                         </div>
                         <div class="col-12 align-self-end align-middle text-container">
                             <p class="text"></p>
                         </div>
                     </div>
                 </div>
-                <div class="col"></div>
+                <div class="col-sm-2 col-lg-4 col-1 main-cont-shrink"></div>
             </div>
         </div>
+
     </body>
 
     <script>
@@ -154,7 +159,10 @@
                 $(".main-container").animate({
                     height: "80%"
                 }, function(){
-                    $(".main-container").switchClass("col", "col-9", function(){
+                    //Change main-container to flex display, and then make the main-cont-shrink smaller and the main-container bigger for Laptop and pc
+                    $(".main-container").css("display", "flex");
+                    $(".main-cont-shrink").switchClass("col-lg-4", "col-lg-2");
+                    $(".main-container").switchClass("col-lg-4", "col-lg-8", function(){
                         addElements();
                     });
                 });
@@ -162,25 +170,24 @@
 
             //adding columns to row
             function addElements(){
-                $(".row-change1").append("<div class='col-3 weaimage'></div>")
-                    .append("<div class='col-9 h-100 weatherText'></div>")
+                $(".row-change1").append("<div class='col-4 order-2 col-lg-4 order-lg-1 weaimage'></div>")
+                    .append("<div class='col-12 order-1 col-lg-8 order-lg-2 weatherText'></div>")
 
-                //add world map and weather-cat images to col-3
-                //.append("<img class='map img-responsive' src='assets/chronotrigger-map.png'>")
+                //add weather-cat images to col-3
                 $(".weaimage").append("<img class='cat' src='assets/boicatface.png'>")
 
                 //Time management to both increase the time each second and to assign time and day month and year to divs
                 var localTime = new Date();
-                $(".weatherText").append("<p class='date wea'>" + localTime.toUTCString().slice(0, 16) +"</p>");
+                $(".weatherText").append("<p class='date'>" + localTime.toUTCString().slice(0, 16) +"</p>");
 
-                $(".weatherText").append("<p class='time wea'>" + localTime.toLocaleTimeString() +"</p>");
+                $(".weatherText").append("<p class='time'>" + localTime.toLocaleTimeString() +"</p>");
                 var timeNeverStops = setInterval(function(){
                     localTime.setSeconds(localTime.getSeconds() + 1);
                     $(".time").text(localTime.toLocaleTimeString());
                 }, 1000);
 
                 //writing location for jSON for country and neighbourhood
-                $(".weatherText").append("<p class='location wea'>" + weatherResponse.name + ", " + weatherResponse.sys.country + "</p>");
+                $(".weatherText").append("<p class='location'>" + weatherResponse.name + ", " + weatherResponse.sys.country + "</p>");
 
 
 
@@ -233,14 +240,14 @@
                             $(".weatherText").append("<i class=\"wi wi-night-snow\"></i>");
                             break;
                         case 'Clear':
-                            $(".weatherText").append("<i class=\"wi wi-night-sunny\"></i>");
+                            $(".weatherText").append("<i class=\"wi wi-night-clear\"></i>");
                             break;
                         case 'Thunderstom':
                             $(".weatherText").append("<i class=\"wi wi-night-thunderstorm\"></i>");
                             break;
                     }
                 }
-                $(".weatherText").append("<p class='weather wea'>" + weatherResponse.weather[0].main + "</p>");
+                $(".weatherText").append("<p class='weather'>" + weatherResponse.weather[0].main + "</p>");
 
                 //Temperature and farenheit/celsius toggle management
                 var celsius = Math.round(weatherResponse.main.temp);
