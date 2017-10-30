@@ -171,23 +171,23 @@
             //adding columns to row
             function addElements(){
                 $(".row-change1").append("<div class='col-4 order-2 col-lg-4 order-lg-1 weaimage'></div>")
-                    .append("<div class='col-12 order-1 col-lg-8 order-lg-2 h-100 weatherText'></div>")
+                    .append("<div class='col-12 order-1 col-lg-8 order-lg-2 weatherText'></div>")
 
                 //add weather-cat images to col-3
                 $(".weaimage").append("<img class='cat' src='assets/boicatface.png'>")
 
                 //Time management to both increase the time each second and to assign time and day month and year to divs
                 var localTime = new Date();
-                $(".weatherText").append("<p class='date wea'>" + localTime.toUTCString().slice(0, 16) +"</p>");
+                $(".weatherText").append("<p class='date'>" + localTime.toUTCString().slice(0, 16) +"</p>");
 
-                $(".weatherText").append("<p class='time wea'>" + localTime.toLocaleTimeString() +"</p>");
+                $(".weatherText").append("<p class='time'>" + localTime.toLocaleTimeString() +"</p>");
                 var timeNeverStops = setInterval(function(){
                     localTime.setSeconds(localTime.getSeconds() + 1);
                     $(".time").text(localTime.toLocaleTimeString());
                 }, 1000);
 
                 //writing location for jSON for country and neighbourhood
-                $(".weatherText").append("<p class='location wea'>" + weatherResponse.name + ", " + weatherResponse.sys.country + "</p>");
+                $(".weatherText").append("<p class='location'>" + weatherResponse.name + ", " + weatherResponse.sys.country + "</p>");
 
 
 
@@ -247,7 +247,7 @@
                             break;
                     }
                 }
-                $(".weatherText").append("<p class='weather wea'>" + weatherResponse.weather[0].main + "</p>");
+                $(".weatherText").append("<p class='weather'>" + weatherResponse.weather[0].main + "</p>");
 
                 //Temperature and farenheit/celsius toggle management
                 var celsius = Math.round(weatherResponse.main.temp);

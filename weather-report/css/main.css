@@ -50,41 +50,110 @@ div.weatherText {
     justify-content: center;
 }
 
-i, p.wea {
-    font-size: 11vh;
-    line-height: 80px;
-}
-
-p.temperature {
-    font-size: 8vh;
-    line-height: 10px;
-}
-
-p.time {
-    margin-bottom: 30px;
-}
-
-p.date, p.time {
-    font-size: 6vh;
-    line-height: 20px;
-}
-
-p.location {
-    font-size: 10vh;
-    line-height: 100px;
-}
-
 .weaimage {
     display: flex;
     align-items: flex-end;
 }
 
 .cat {
-    margin-left: 2vw;
+    margin-left: 10px;
     width: 150%;
     height: auto;
 }
 
-.temperatureToggle:hover {
-    text-decoration: none;
+/* Mobile viewport */
+@media screen and (max-width: 575px) {
+
+    p.date, p.time {
+        font-size: 30px;
+        line-height: 20px;
+    }
+
+    p.date {
+        margin-top: 15px;
+    }
+
+    p.time {
+        margin-bottom: 20px;
+    }
+
+    p.location {
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    i, p.weather {
+        font-size: 60px;
+        line-height: 80px;
+    }
+
+    p.temperature {
+        font-size: 55px;
+        line-height: 20px;
+    }
+
+    .cat {
+        margin-left: 10px;
+        width: 250%;
+        height: auto;
+    }
+
+}
+
+/* Tablet viewport */
+@media screen and (min-width: 576px) {
+
+    p.date, p.time {
+        font-size: 10px;
+        line-height: 20px;
+    }
+
+    p.time {
+        margin-bottom: 30px;
+    }
+
+    p.location {
+        font-size: 10vh;
+        line-height: 100px;
+    }
+
+    i, p.wea {
+        font-size: 11vh;
+        line-height: 80px;
+    }
+
+    p.temperature {
+        font-size: 8vh;
+        line-height: 10px;
+    }
+
+}
+
+/* Laptop and pc viewport */
+@media screen and (min-width: 992px) {
+
+    p.date, p.time {
+        font-size: 2000px;
+        line-height: 20px;
+    }
+
+    p.time {
+        margin-bottom: 30px;
+    }
+
+    p.location {
+        font-size: 10vh;
+        line-height: 100px;
+    }
+
+    i, p.wea {
+        font-size: 11vh;
+        line-height: 80px;
+    }
+
+    p.temperature {
+        font-size: 8vh;
+        line-height: 10px;
+    }
+
 }
