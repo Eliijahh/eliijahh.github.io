@@ -17,12 +17,12 @@
     <body>
 
         <div class="container-fluid h-100">
-            <div class="row h-100">
+            <div class="row main-row h-100">
 
-                <div class="col"></div>
-                <div class="col">
+                <div class="col-1"></div>
+                <div class="col-10 main-col">
 
-                    <p><a class="random-article" target="_blank" href="https://en.wikipedia.org/wiki/Special:Random">Click here for a random article</a></p>
+                    <p class="random-article" ><a class="random-article" target="_blank" href="https://en.wikipedia.org/wiki/Special:Random">Click here for a random article</a></p>
                     <div class="input-group">
                         <input type="text" class="form-control search-bar" placeholder="Search">
                         <span class="input-group-btn">
@@ -31,7 +31,7 @@
                     </div>
 
                 </div>
-                <div class="col"></div>
+                <div class="col-1"></div>
             </div>
         </div>
 
@@ -40,15 +40,30 @@
 
     <script>
 
+    var wikiPages;
+
     function getWikiInfo() {
-        var usr_input = $(".search-bar").val()
-        var query = "https://en.wikipedia.org/w/api.php?origin=*&action=query&list=search&srsearch=" + usr_input + "&format=json"
-        $.get( query, function(data, status){
+        var usr_input = $(".search-bar").val();
+        var query = "https://en.wikipedia.org/w/api.php?origin=*&action=query&list=search&srsearch=" + usr_input + "&format=json";
+        $.get(query, function(data, status){
+            console.log(data);
             wikiPages = data;
+            manageTransition(wikiPages);
         });
     }
 
+    function manageTransition(data) {
+        //Bring the entire row from align-items = center to flex-start
+        $(".main-row").switchClass("main-row", "row-flex-start")
+        if (data.query.search.length > 0) {
+            for(var i = 0; i < data.query.search.length; i++) {
+                $(".main-col").append("<div>Stiamo a " + i + "entries</div>");
+            }
+        }
 
+
+
+    }
 
 
 
