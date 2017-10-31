@@ -22,9 +22,9 @@
 
                     <p><a target="_blank" href="https://en.wikipedia.org/wiki/Special:Random">Click here for a random article</a></p>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control search-bar" placeholder="Search">
                         <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                            <button onclick="getWikiInfo()" class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
 
@@ -35,3 +35,21 @@
 
 
     </body>
+
+    <script>
+
+    function getWikiInfo() {
+        var usr_input = $(".search-bar").val()
+        var query = "https://en.wikipedia.org/w/api.php?origin=*&action=query&list=search&srsearch=" + usr_input + "&format=json"
+        $.get( query, function(data, status){
+            wikiPages = data;
+        });
+    }
+
+
+
+
+
+
+
+    </script>
