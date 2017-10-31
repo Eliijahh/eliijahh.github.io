@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+
 
     </head>
 
@@ -20,11 +22,11 @@
                 <div class="col"></div>
                 <div class="col">
 
-                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Special:Random">Click here for a random article</a></p>
+                    <p><a class="random-article" target="_blank" href="https://en.wikipedia.org/wiki/Special:Random">Click here for a random article</a></p>
                     <div class="input-group">
                         <input type="text" class="form-control search-bar" placeholder="Search">
                         <span class="input-group-btn">
-                            <button onclick="getWikiInfo()" class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                            <button onclick="getWikiInfo()" class="btn btn-secondary search-button" type="button"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
 
