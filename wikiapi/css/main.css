@@ -27,6 +27,7 @@ div.row-flex-start {
 div.input-group {
     width: 40%;
     align-self: center;
+    margin-bottom: 30px;
 }
 
 input.search-bar {
@@ -46,5 +47,6 @@ button.search-button {
 
 a.pages {
     background-color: white;
-    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px 15px 0px 15px;
 }
