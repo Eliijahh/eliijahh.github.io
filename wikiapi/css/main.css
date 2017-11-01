@@ -49,4 +49,20 @@ a.pages {
     background-color: white;
     margin-bottom: 20px;
     padding: 15px 15px 0px 15px;
+    transition: .1s;
+}
+
+a.pages:hover {
+    text-decoration: none;
+    border-left: 7px solid;
+    border-color: #C17796;
+}
+
+p.page-title {
+    font-size: 130%;
+    color: #4C0020;
+}
+
+p.page-description {
+    color: #4C0020;
 }
