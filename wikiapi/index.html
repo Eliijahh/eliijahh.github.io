@@ -44,7 +44,7 @@
 
     function getWikiInfo() {
         var usr_input = $(".search-bar").val();
-        var query = "https://en.wikipedia.org/w/api.php?origin=*&action=query&list=search&srsearch=" + usr_input + "&format=json";
+        var query = "https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=extracts&list=search&srsearch=" + usr_input + "&format=json";
         $.get(query, function(data, status){
             console.log(data);
             wikiPages = data;
@@ -57,7 +57,7 @@
         $(".main-row").switchClass("main-row", "row-flex-start")
         if (data.query.search.length > 0) {
             for(var i = 0; i < data.query.search.length; i++) {
-                $(".main-col").append("<div>Stiamo a " + i + "entries</div>");
+                $(".main-col").append("<a class='pages' href=" + "http://en.wikipedia.org/?curid=" + data.query.search[i].pageid + "><div class='pages'>" + data.query.search[i].title + "<br>" + data.query.search[i].snippet + "</div></a>");
             }
         }
 
