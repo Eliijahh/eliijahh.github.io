@@ -40,7 +40,14 @@
 
     <script>
 
+    //declaring wikiPages variable
     var wikiPages;
+    //Event handler for when user press enter after writing the search text in the input form
+    $(".search-bar").keypress(function(e){
+        if(e.which == 13) {
+            getWikiInfo();
+        }
+    });
 
     function getWikiInfo() {
         var usr_input = $(".search-bar").val();
@@ -54,17 +61,20 @@
 
     function manageTransition(data) {
         //Bring the entire row from align-items = center to flex-start
-        $(".main-row").switchClass("main-row", "row-flex-start")
-        if (data.query) {
-            for(var pages in data.query.pages) {
-
-                //create elements with the wiki pages results
-                $(".main-col").append("<a class='pages' href=" + "http://en.wikipedia.org/?curid=" + data.query.pages[pages].pageid + "><div class='pages'><p class='page-title'>" + data.query.pages[pages].title + "</p><p class='page-description'>" + data.query.pages[pages].extract + "</p></div></a>");
-            }
+        $(".main-row").switchClass("main-row", "row-flex-start");
+        if($(".pages-container").length) {
+            $(".pages-container").empty();
+        } else {
+            $(".main-col").append("<div class='pages-container'></div>");
         }
 
-
-
+        if (data.query) {
+            for(var pages in data.query.pages) {
+                $(".pages-container").append("<a class='pages' target='_blank' href=" + "http://en.wikipedia.org/?curid=" + data.query.pages[pages].pageid + "><div class='pages'><p class='page-title'>" + data.query.pages[pages].title + "</p><p class='page-description'>" + data.query.pages[pages].extract + "</p></div></a>");
+            }
+        } else {
+            $(".pages-container").append("<div class='pages'><p class='page-description'> Your search - <b>" + $(".search-bar").val() + "</b> - did not match any Wikipedia page. <br><br> Suggestions: <br><br> - Make sure that all words are spelled correctly<br> - Try different keywords. <br> - Try more general keywords.</p></div>");
+        }
     }
 
 

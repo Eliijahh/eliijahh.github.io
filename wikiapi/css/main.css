@@ -24,6 +24,11 @@ div.row-flex-start {
     align-self: center;
 }
 
+.random-article:hover {
+    color: #149fb7;
+    text-decoration: none;
+}
+
 div.input-group {
     width: 40%;
     align-self: center;
@@ -39,23 +44,31 @@ button.search-button {
     background-color: #6C0932;
     border-color: #4C0020;
 }
+
 .main-col {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-a.pages {
+div.pages-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.pages {
     background-color: white;
     margin-bottom: 20px;
     padding: 15px 15px 0px 15px;
     transition: .1s;
+    border-left: 0px solid;
 }
 
 a.pages:hover {
     text-decoration: none;
     border-left: 7px solid;
-    border-color: #C17796;
+    border-color: #149fb7;
 }
 
 p.page-title {
