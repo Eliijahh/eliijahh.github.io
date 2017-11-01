@@ -57,7 +57,7 @@ div.pages-container {
     justify-content: space-around;
 }
 
-a.pages {
+.pages {
     background-color: white;
     margin-bottom: 20px;
     padding: 15px 15px 0px 15px;
