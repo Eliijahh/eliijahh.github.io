@@ -40,7 +40,14 @@
 
     <script>
 
+    //declaring wikiPages variable
     var wikiPages;
+    //Event handler for when user press enter after writing the search text in the input form
+    $(".search-bar").keypress(function(e){
+        if(e.which == 13) {
+            getWikiInfo();
+        }
+    });
 
     function getWikiInfo() {
         var usr_input = $(".search-bar").val();
