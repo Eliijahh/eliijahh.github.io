@@ -25,6 +25,7 @@ div.row-flex-start {
 }
 
 .random-article:hover {
+    color: #149fb7;
     text-decoration: none;
 }
 
@@ -43,7 +44,14 @@ button.search-button {
     background-color: #6C0932;
     border-color: #4C0020;
 }
+
 .main-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+div.pages-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
