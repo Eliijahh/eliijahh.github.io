@@ -20,6 +20,7 @@ div.row-flex-start {
 .random-article {
     color: #DBB9C7;
     margin-top: 20px;
+    margin-bottom: 8px;
     align-self: center;
 }
 
@@ -40,4 +41,10 @@ button.search-button {
 .main-col {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+}
+
+a.pages {
+    background-color: white;
+    margin-top: 20px;
 }
