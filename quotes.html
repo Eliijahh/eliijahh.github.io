@@ -1,19 +1,19 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/quotes.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     </head>
 
     <body>
-        
+
         <div class="container">
             <div class="row align-items-center h-100">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    
+
                     <h4 id="quote-text"></h4>
                     <div class="row">
                         <div class="col">
@@ -24,8 +24,8 @@
                         <div class="col">
 
                             <button type="button" class="btn btn-sm btn-outline-secondary" id="next-quote" onclick="callFetchCall()">
-                                <i class="fa fa-chevron-right"></i>        
-                            </button> 
+                                <i class="fa fa-chevron-right"></i>
+                            </button>
 
                             <a id="twit-quote" target="_blank">
                                 <i class="fa fa-twitter"></i>
@@ -34,16 +34,16 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            
+
                         </div>
                     </div>
 
                 </div>
                 <div class="col-md-4"></div>
-            </div>    
+            </div>
         </div>
-        
-            <!-- Twitter button center row 
+
+            <!-- Twitter button center row
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-4 text-center" style="margin-left: 12px; margin-top: 10px;">
@@ -53,26 +53,26 @@
                             </div>
                             <div class="col-xs-4"></div>
                         </div>
-                    </div>  
-            -->  
+                    </div>
+            -->
 
 
 
-        <script>    
-            
-            //Get quotes from the external website 
+        <script>
+
+            //Get quotes from the external website
             var quoteText = document.getElementById("quote-text");
             var quoteAuthor = document.getElementById("quote-author");
             var buttonNext = document.querySelector("#next-quote");
             var twitButton = document.getElementById("twit-quote")
-            
+
             var cors = "https://cors-anywhere.herokuapp.com/"
             var url = "http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en"
-            
+
             function callFetchCall()
             {
                 var i4;
-            
+
                 setTimeout(function showQuote(){
                 i4 = setInterval(disappearAll, 50);
                 }, 500);
@@ -92,9 +92,9 @@
                         twitButton.style.opacity -= 0.05;
                     }
                 }
-                
+
             }
-            
+
             function fetchCall()
             {
             fetch(cors + url)
@@ -121,22 +121,22 @@
                 .catch(e => {console.log(e.statusText);
                              fetchCall();})
             }
-            
+
             fetchCall();
-            
+
             //Make the quote text and the quote author appear with a gradual fade in
-            function getMovin() 
+            function getMovin()
             {
                 var i1, i2, i3, i4;
 
-                document.getElementById("twit-quote").setAttribute("href", 
+                document.getElementById("twit-quote").setAttribute("href",
                     "https://twitter.com/intent/tweet?hashtags=quotes&text=" + quoteText.innerHTML + quoteAuthor.innerHTML);
-                
+
                 setTimeout(function showQuote(){
                     i1 = setInterval(appearText, 50);
                 }, 500);
 
-                function appearText() 
+                function appearText()
                 {
                     if(quoteText.style.opacity >= 1)
                     {
@@ -149,7 +149,7 @@
                     }
                 }
 
-                function appearAuthor() 
+                function appearAuthor()
                 {
                     if(quoteAuthor.style.opacity >= 1)
                     {
@@ -161,7 +161,7 @@
                         quoteAuthor.style.opacity -= -0.04;
                     }
                 }
-                
+
                 function appearButton()
                 {
                     if(buttonNext.style.opacity >= 1)
@@ -174,17 +174,17 @@
                         twitButton.style.opacity -= -0.05;
                     }
                 }
-            }        
+            }
 
-        </script>        
-    
-    
-    
-    
-    
+        </script>
+
+
+
+
+
     </body>
 
-    
+
 
 
 

@@ -1,11 +1,6 @@
 @font-face {
     font-family: gameboy;
-    src: url("font/gameboy.ttf");
-}
-
-@font-face {
-    font-family: pokemon;
-    src: url("font/pokemon.ttf");
+    src: url("../fonts/gameboy.ttf");
 }
 
 html {

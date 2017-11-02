@@ -6,9 +6,9 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-        <link type="text/css" rel="stylesheet" href="css/main.css">
-        <link type="text/css" rel="stylesheet" href="css/weather-icons.css">
-        <link type="text/css" rel="stylesheet" href="css/weather-icons-wind.css">
+        <link type="text/css" rel="stylesheet" href="resources/css/weather.css">
+        <link type="text/css" rel="stylesheet" href="resources/css/weather-icons.css">
+        <link type="text/css" rel="stylesheet" href="resources/css/weather-icons-wind.css">
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
 
@@ -26,7 +26,7 @@
                 <div class="col-sm-8 col-lg-4 col-10 main-container">
                     <div class="row row-change1">
                         <div class="col-12 gif-container">
-                            <img class="gif-cat img-responsive" src="assets/SleepyCatWithMouse2.gif">
+                            <img class="gif-cat img-responsive" src="resources/images/weather-cat.gif">
                         </div>
                         <div class="col-12 align-self-end align-middle text-container">
                             <p class="text"></p>
@@ -84,7 +84,7 @@
             function getLocation() {
                 var options = {
                     enableHighAccuracy: true,
-                    timeout : 10000,
+                    timeout : 5000,
                     maximumAge: 0
                 }
 
@@ -174,7 +174,7 @@
                     .append("<div class='col-12 order-1 col-sm-8 order-sm-2 col-md-12 order-md-1 col-lg-8 order-lg-2 weatherText'></div>")
 
                 //add weather-cat images to col-3
-                $(".weaimage").append("<img class='cat' src='assets/boicatface.png'>")
+                $(".weaimage").append("<img class='cat' src='resources/images/weather-catface.png'>")
 
                 //Time management to both increase the time each second and to assign time and day month and year to divs
                 var localTime = new Date();
