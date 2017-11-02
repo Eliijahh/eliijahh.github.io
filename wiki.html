@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link type="text/css" rel="stylesheet" href="resources/css/wiki.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+
+
+    </head>
+
+    <body>
+
+        <div class="container-fluid h-100">
+            <div class="row main-row h-100">
+
+                <div class="col-1"></div>
+                <div class="col-10 main-col">
+
+                    <p class="random-article" ><a class="random-article" target="_blank" href="https://en.wikipedia.org/wiki/Special:Random">Click here for a random article</a></p>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-bar" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button onclick="getWikiInfo()" class="btn btn-secondary search-button" type="button"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+
+
+    </body>
+
+    <script>
+
+    //declaring wikiPages variable
+    var wikiPages;
+    //Event handler for when user press enter after writing the search text in the input form
+    $(".search-bar").keypress(function(e){
+        if(e.which == 13) {
+            getWikiInfo();
+        }
+    });
+
+    function getWikiInfo() {
+        var usr_input = $(".search-bar").val();
+        var query = "https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=extracts&generator=search&exsentences=1&exlimit=10&exintro=1&explaintext=1&gsrsearch=" + usr_input;
+        $.get(query, function(data, status){
+            console.log(data);
+            wikiPages = data;
+            manageTransition(wikiPages);
+        });
+    }
+
+    function manageTransition(data) {
+        //Bring the entire row from align-items = center to flex-start
+        $(".main-row").switchClass("main-row", "row-flex-start");
+        if($(".pages-container").length) {
+            $(".pages-container").empty();
+        } else {
+            $(".main-col").append("<div class='pages-container'></div>");
+        }
+
+        if (data.query) {
+            for(var pages in data.query.pages) {
+                $(".pages-container").append("<a class='pages' target='_blank' href=" + "http://en.wikipedia.org/?curid=" + data.query.pages[pages].pageid + "><div class='pages'><p class='page-title'>" + data.query.pages[pages].title + "</p><p class='page-description'>" + data.query.pages[pages].extract + "</p></div></a>");
+            }
+        } else {
+            $(".pages-container").append("<div class='pages'><p class='page-description'> Your search - <b>" + $(".search-bar").val() + "</b> - did not match any Wikipedia page. <br><br> Suggestions: <br><br> - Make sure that all words are spelled correctly<br> - Try different keywords. <br> - Try more general keywords.</p></div>");
+        }
+    }
+
+
+
+
+
+    </script>
