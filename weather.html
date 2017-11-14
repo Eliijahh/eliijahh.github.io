@@ -49,13 +49,14 @@
             //Check if the user has already been on the page, accepted the geolocation request or not
             function checkAuthorizedGeolocation(){
 
+                getLocation();
                 if(typeof localStorage["authorizedGeolocation"] == "undefined"){
                     $(".text").typeIt({
                         speed: 30,
                         cursor: false,
-                        callback: function(){
-                            getLocation();
-                        }
+                        // callback: function(){
+                        //     getLocation();
+                        // }
                     })
                     .tiType("Meow! ")
                     .tiPause(1000)
@@ -64,14 +65,14 @@
                     .tiPause(750)
                     .tiType("cats are very good at keeping secrets! :3")
                 }else if(localStorage["authorizedGeolocation"] == 0){
-                    getLocation();
+                    // getLocation();
                 }else if(localStorage["authorizedGeolocation"] == 1){
                     $(".text").typeIt({
                         speed: 30,
                         cursor: false,
-                        callback: function(){
-                            getLocation();
-                        }
+                        // callback: function(){
+                        //     getLocation();
+                        // }
                     })
                     .tiType("Meow! ")
                     .tiPause(1000)
