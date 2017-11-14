@@ -70,7 +70,7 @@
                         speed: 30,
                         cursor: false,
                         callback: function(){
-                            //getLocation();
+                            getLocation();
                         }
                     })
                     .tiType("Meow! ")
@@ -84,7 +84,7 @@
             function getLocation() {
                 var options = {
                     enableHighAccuracy: true,
-                    timeout : 5000,
+                    timeout : 10000,
                     maximumAge: 0
                 }
 
