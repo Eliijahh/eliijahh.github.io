@@ -29,10 +29,29 @@ div.row-flex-start {
     text-decoration: none;
 }
 
+/* Bigger search box input bar for iphones */
 div.input-group {
-    width: 40%;
+    width: 100%;
     align-self: center;
     margin-bottom: 30px;
+}
+
+/* Smaller search box input bar for ipad devices */
+@media screen and (min-width: 768px) {
+    div.input-group {
+        width: 40vw;
+        align-self: center;
+        margin-bottom: 30px;
+    }
+}
+
+/* Smaller search box input bar for pc devices */
+@media screen and (min-width: 992px) {
+    div.input-group {
+        width: 40vw;
+        align-self: center;
+        margin-bottom: 30px;
+    }
 }
 
 input.search-bar {

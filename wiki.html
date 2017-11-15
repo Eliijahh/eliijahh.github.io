@@ -20,8 +20,8 @@
         <div class="container-fluid h-100">
             <div class="row main-row h-100">
 
-                <div class="col-1"></div>
-                <div class="col-10 main-col">
+                <div class="col-1 col-sm-4"></div>
+                <div class="col-10 col-sm-4 main-col">
 
                     <p class="random-article" ><a class="random-article hvr-bob" target="_blank" href="https://en.wikipedia.org/wiki/Special:Random">Click here for a random article</a></p>
                     <div class="input-group">
@@ -32,7 +32,7 @@
                     </div>
 
                 </div>
-                <div class="col-1"></div>
+                <div class="col-1 col-sm-4"></div>
             </div>
         </div>
 
@@ -61,6 +61,10 @@
     }
 
     function manageTransition(data) {
+        //Change three column sizes before transition
+        $(".col-1").switchClass("col-sm-4", "col-sm-1")
+        $(".main-col").switchClass("col-sm-4", "col-sm-10")
+
         //Bring the entire row from align-items = center to flex-start
         $(".main-row").switchClass("main-row", "row-flex-start");
         if($(".pages-container").length) {
