@@ -45,6 +45,18 @@ button.search-button {
     border-color: #4C0020;
 }
 
+button.search-button:hover {
+    background-color: #8c0940;
+    border-color: #DBB9C7;
+    border-left-color: black;
+}
+
+button.search-button:focus {
+    box-shadow: none !important;
+    border-color: #DBB9C7;
+    border-left-color: black;
+}
+
 .main-col {
     display: flex;
     flex-direction: column;
