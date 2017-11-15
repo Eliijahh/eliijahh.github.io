@@ -37,7 +37,7 @@ div.input-group {
 }
 
 /* Smaller search box input bar for ipad devices */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 576px) {
     div.input-group {
         width: 40vw;
         align-self: center;
