@@ -32,7 +32,7 @@
 
 
         $("#authenticate").on("click", function(){
-            document.location.href = "https://auth.monzo.com/?redirect_uri=" + redirect_uri + "&client_id=" + client_id;
+            document.location.href = "https://auth.monzo.com/?redirect_uri=" + redirect_uri + "&client_id=" + client_id + "&response_type=code";
         });
 
     </script>
