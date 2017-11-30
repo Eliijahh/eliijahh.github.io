@@ -26,9 +26,9 @@
         }
 
         var client_id = "oauthclient_000094PvINDGzT3k6tz8jp";
-        var redirect_uri = "https://eliijahh.github.io/monzo1.html";
-        var auth0_authorize = createRandomString(8);
-        var encodedString = btoa(auth0_authorize);
+        var redirect_uri = "https://eliijahh.github.io/monzo1.html/oauth/callback?code=$authorization_code";
+        //var auth0_authorize = createRandomString(8);
+        //var encodedString = btoa(auth0_authorize);
 
 
         $("#authenticate").on("click", function(){
