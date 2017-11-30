@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <div>
+            <button id="authenticate">Authenticate me, pls</button>
+            <a href="https://auth.getmondo.co.uk/?client_id=00009QqWiPhU8DUYxiYcAj&redirect_uri=http://localhost:3000/monzo1.html&response_type=code&state=$state_token">Click me</a>
+        </div>
+    </body>
+
+    <script>
+
+        function createRandomString( length ) {
+
+            var str = "";
+            for ( ; str.length < length; str += Math.random().toString( 36 ).substr( 2 ) );
+            return str.substr( 0, length );
+        }
+
+        var client_id = "oauthclient_000094PvINDGzT3k6tz8jp";
+        var redirect_uri = "https://eliijahh.github.io/monzo1.html";
+        var auth0_authorize = createRandomString(8);
+        var encodedString = btoa(auth0_authorize);
+
+
+        $("#authenticate").on("click", function(){
+            document.location.href = "https://auth.getmondo.co.uk/?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&response_type=code&state=" + encodedString;
+        });
+
+    </script>
+</html>
+
+
+
+https://auth.monzo.com/?
+redirect_uri=https%3A%2F%2Fdevelopers.monzo.com%2Flogin%3Fredirect%3D%252Fapi%252Fplayground
+&client_id=oauthclient_000094PvINDGzT3k6tz8jp&response_type=code
