@@ -1,3 +1,7 @@
 html, body {
     background-color: #efeef1;
 }
+
+div.singleStreamContainer {
+    padding: 20px 30px 20px 30px;
+}
