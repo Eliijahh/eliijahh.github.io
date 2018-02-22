@@ -9,6 +9,7 @@
         <link type="text/css" rel="stylesheet" href="resources/css/weather.css">
         <link type="text/css" rel="stylesheet" href="resources/css/weather-icons.css">
         <link type="text/css" rel="stylesheet" href="resources/css/weather-icons-wind.css">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans">
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
 
@@ -254,15 +255,15 @@
                 var celsius = Math.round(weatherResponse.main.temp);
                 var farenheit = Math.round(celsius * (9/5) + 32);
 
-                $(".weatherText").append("<p class='temperature wea'>" + Math.round(celsius)  + "<a class='temperatureToggle' href='#'> °C</a></p>");
+                $(".weatherText").append("<p class='temperature wea'>" + Math.round(celsius)  + "<a class='temperatureToggle' href='#'> <span class='degrees'>°</span><span class='tempType'>C</span></a></p>");
 
                 $(".temperatureToggle").on("click", function(){
-                    if($(this).html() == " °C") {
+                    if($(".tempType").text() == "C") {
                         $(".temperature").contents()[0].nodeValue = farenheit;
-                        $(".temperature").children(".temperatureToggle").html(" °F");
+                        $(".tempType").text("F");
                     } else {
                         $(".temperature").contents()[0].nodeValue = celsius;
-                        $(".temperature").children(".temperatureToggle").html(" °C");
+                        $(".tempType").text("C");
                     }
                 });
 
