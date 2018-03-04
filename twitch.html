@@ -4,8 +4,355 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link type="text/css" rel="stylesheet" href="resources/css/twitch.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
     </head>
     <body>
 
+        <nav class="navbar navbar-light justify-content-between" style="background-color: #ffffff;">
+            <div class="navbar-brand" href="#">
+                <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/twitchjp-profile_image-85850e71235f7877-300x300.png" width="35" height="35" alt="">
+                TwitchTV
+            </div>
+
+        </nav>
+
+        <div class="container">
+            <div class="row singleStreamContainer">
+
+                    <div class="row">
+                        <div class="col-5">
+                            <a href="">
+                                <img class="img-fluid img0" src="">
+                            </a>
+                        </div>
+                        <div class="col-7">
+                            <div><img class="onlineOrOfflineIcon0 onlineOrOfflineIcon"><span class="onlineOrOfflineText0"></span></div>
+                            <div class="name0"></div>
+                            <div class="game0"></div>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="row singleStreamContainer">
+
+                    <div class="row">
+                        <div class="col-5">
+                            <a href="">
+                                <img class="img-fluid img1" src="">
+                            </a>
+                        </div>
+                        <div class="col-7">
+                            <div><img class="onlineOrOfflineIcon1 onlineOrOfflineIcon"><span class="onlineOrOfflineText1"></span></div>
+                            <div class="name1"></div>
+                            <div class="game1"></div>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="row singleStreamContainer">
+
+                    <div class="row">
+                        <div class="col-5">
+                            <a href="">
+                                <img class="img-fluid img2" src="">
+                            </a>
+                        </div>
+                        <div class="col-7">
+                            <div><img class="onlineOrOfflineIcon2 onlineOrOfflineIcon"><span class="onlineOrOfflineText2"></span></div>
+                            <div class="name2"></div>
+                            <div class="game2"></div>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="row singleStreamContainer">
+
+                    <div class="row">
+                        <div class="col-5">
+                            <a href="">
+                                <img class="img-fluid img3" src="">
+                            </a>
+                        </div>
+                        <div class="col-7">
+                            <div><img class="onlineOrOfflineIcon3 onlineOrOfflineIcon"><span class="onlineOrOfflineText3"></span></div>
+                            <div class="name3"></div>
+                            <div class="game3"></div>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="row singleStreamContainer">
+
+                    <div class="row">
+                        <div class="col-5">
+                            <a href="">
+                                <img class="img-fluid img4" src="">
+                            </a>
+                        </div>
+                        <div class="col-7">
+                            <div><img class="onlineOrOfflineIcon4 onlineOrOfflineIcon"><span class="onlineOrOfflineText4"></span></div>
+                            <div class="name4"></div>
+                            <div class="game4"></div>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="row singleStreamContainer">
+
+                    <div class="row">
+                        <div class="col-5">
+                            <a href="">
+                                <img class="img-fluid img5" src="">
+                            </a>
+                        </div>
+                        <div class="col-7">
+                            <div><img class="onlineOrOfflineIcon5 onlineOrOfflineIcon"><span class="onlineOrOfflineText5"></span></div>
+                            <div class="name5"></div>
+                            <div class="game5"></div>
+                        </div>
+                    </div>
+
+            </div>
+
+        </div>
+
+
     </body>
 </html>
+
+<script>
+    var apiData = new Array();
+    var isOffline = new Array();
+    var channelsNames = ["freecodecamp", "esl_sc2", "basetradetv", "wintergaming", "demuslim", "followgrubby"];
+
+    //get requests to get all channels information
+    var r1 = $.get("https://wind-bow.glitch.me/twitch-api/streams/" + channelsNames[0], function(data, status){apiData[0] = data;});
+    var r2 = $.get("https://wind-bow.glitch.me/twitch-api/streams/" + channelsNames[1], function(data, status){apiData[1] = data;});
+    var r3 = $.get("https://wind-bow.glitch.me/twitch-api/streams/" + channelsNames[2], function(data, status){apiData[2] = data;});
+    var r4 = $.get("https://wind-bow.glitch.me/twitch-api/streams/" + channelsNames[3], function(data, status){apiData[3] = data;});
+    var r5 = $.get("https://wind-bow.glitch.me/twitch-api/streams/" + channelsNames[4], function(data, status){apiData[4] = data;});
+    var r6 = $.get("https://wind-bow.glitch.me/twitch-api/streams/" + channelsNames[5], function(data, status){apiData[5] = data;});
+
+    $.when(r1, r2, r3, r4, r5, r6).done(function() {
+        if (apiData[0].stream == null) {
+            r1 = $.get("https://wind-bow.glitch.me/twitch-api/channels/" + channelsNames[0], function(data, status){apiData[0] = data;});
+            isOffline[0] = true;
+        }
+        if (apiData[1].stream == null) {
+            r2 = $.get("https://wind-bow.glitch.me/twitch-api/channels/" + channelsNames[1], function(data, status){apiData[1] = data;});
+            isOffline[1] = true;
+        }
+        if (apiData[2].stream == null) {
+             r3 = $.get("https://wind-bow.glitch.me/twitch-api/channels/" + channelsNames[2], function(data, status){apiData[2] = data;});
+             isOffline[2] = true;
+        }
+        if (apiData[3].stream == null) {
+            r4 = $.get("https://wind-bow.glitch.me/twitch-api/channels/" + channelsNames[3], function(data, status){apiData[3] = data;});
+            isOffline[3] = true;
+        }
+        if (apiData[4].stream == null) {
+            r5 = $.get("https://wind-bow.glitch.me/twitch-api/channels/" + channelsNames[4], function(data, status){apiData[4] = data;});
+            isOffline[4] = true;
+        }
+        if (apiData[5].stream == null) {
+            r6 = $.get("https://wind-bow.glitch.me/twitch-api/channels/" + channelsNames[5], function(data, status){apiData[5] = data;});
+            isOffline[5] = true;
+        }
+
+        $.when(r1, r2, r3, r4, r5, r6).done(function(){
+            console.log("Done!")
+
+            function change0() {
+                console.log("Starting to add changes to item 0")
+                //manage if channel is offline
+                if (isOffline[0] == true) {
+                    // add img
+                    $(".img0").attr("src", apiData[0].logo);
+                    $(".img0").parent().attr("href", apiData[0].url);
+                    // add icon
+                    $(".onlineOrOfflineIcon0").attr("src", "resources/images/OfflineRedSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText0").text("   Offline");
+                    // write name
+                    $(".name0").text(apiData[0].display_name);
+                    // write Game
+                    $(".game0").text(apiData[0].game);
+                } else {
+                    // add img
+                    $(".img0").attr("src", apiData[0].stream.channel.logo);
+                    $(".img0").parent().attr("href", apiData[0].stream.channel.url);
+                    // add icon
+                    $(".onlineOrOfflineIcon0").attr("src", "resources/images/OnlineGreenSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText0").text("   Online");
+                    // write name
+                    $(".name0").text(apiData[0].stream.channel.display_name);
+                    // write Game
+                    $(".game0").text(apiData[0].stream.game);
+                }
+            };
+            function change1() {
+                console.log("Starting to add changes to item 1")
+                //manage if channel is offline
+                if (isOffline[1] == true) {
+                    // add img
+                    $(".img1").attr("src", apiData[1].logo);
+                    $(".img1").parent().attr("href", apiData[1].url);
+                    // add icon
+                    $(".onlineOrOfflineIcon1").attr("src", "resources/images/OfflineRedSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText1").text("   Offline");
+                    // write name
+                    $(".name0").text(apiData[1].display_name);
+                    // write Game
+                    $(".game0").text(apiData[1].game);
+                } else {
+                    // add img
+                    $(".img1").attr("src", apiData[1].stream.channel.logo);
+                    $(".img1").parent().attr("href", apiData[1].stream.channel.url);
+                    // add icon
+                    $(".onlineOrOfflineIcon1").attr("src", "resources/images/OnlineGreenSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText1").text("   Online");
+                    // write name
+                    $(".name1").text(apiData[1].stream.channel.display_name);
+                    // write Game
+                    $(".game1").text(apiData[1].stream.game);
+                }
+
+            };
+            function change2() {
+                console.log("Starting to add changes to item 2")
+                //manage if channel is offline
+                if (isOffline[2] == true) {
+                    // add img
+                    $(".img2").attr("src", apiData[2].logo);
+                    $(".img2").parent().attr("href", apiData[2].url);
+                    // add icon
+                    $(".onlineOrOfflineIcon2").attr("src", "resources/images/OfflineRedSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText2").text("   Offline");
+                    // write name
+                    $(".name2").text(apiData[2].display_name);
+                    // write Game
+                    $(".game2").text(apiData[2].game);
+                } else {
+                    // add img
+                    $(".img2").attr("src", apiData[2].stream.channel.logo);
+                    $(".img2").parent().attr("href", apiData[2].stream.channel.url);
+                    // add icon
+                    $(".onlineOrOfflineIcon2").attr("src", "resources/images/OnlineGreenSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText2").text("   Online");
+                    // write name
+                    $(".name2").text(apiData[2].stream.channel.display_name);
+                    // write Game
+                    $(".game2").text(apiData[2].stream.game);
+                }
+
+            };
+            function change3() {
+                console.log("Starting to add changes to item 3")
+                //manage if channel is offline
+                if (isOffline[3] == true) {
+                    // add img
+                    $(".img3").attr("src", apiData[3].logo);
+                    $(".img3").parent().attr("href", apiData[3].url);
+                    // add icon
+                    $(".onlineOrOfflineIcon3").attr("src", "resources/images/OfflineRedSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText3").text("   Offline");
+                    // write name
+                    $(".name0").text(apiData[3].display_name);
+                    // write Game
+                    $(".game0").text(apiData[3].game);
+                } else {
+                    // add img
+                    $(".img3").attr("src", apiData[3].stream.channel.logo);
+                    $(".img3").parent().attr("href", apiData[3].stream.channel.url);
+                    // add icon
+                    $(".onlineOrOfflineIcon3").attr("src", "resources/images/OnlineGreenSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText3").text("   Online");
+                    // write name
+                    $(".name3").text(apiData[3].stream.channel.display_name);
+                    // write Game
+                    $(".game3").text(apiData[3].stream.game);
+                }
+
+            };
+            function change4() {
+                console.log("Starting to add changes to item 4")
+                //manage if channel is offline
+                if (isOffline[4] == true) {
+                    // add img
+                    $(".img4").attr("src", apiData[4].logo);
+                    $(".img4").parent().attr("href", apiData[4].url);
+                    // add icon
+                    $(".onlineOrOfflineIcon4").attr("src", "resources/images/OfflineRedSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText4").text("   Offline");
+                    // write name
+                    $(".name4").text(apiData[4].display_name);
+                    // write Game
+                    $(".game4").text(apiData[4].game);
+                } else {
+                    // add img
+                    $(".img4").attr("src", apiData[4].stream.channel.logo);
+                    $(".img4").parent().attr("href", apiData[4].stream.channel.url);
+                    // add icon
+                    $(".onlineOrOfflineIcon4").attr("src", "resources/images/OnlineGreenSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText4").text("   Online");
+                    // write name
+                    $(".name4").text(apiData[4].stream.channel.display_name);
+                    // write Game
+                    $(".game4").text(apiData[4].stream.game);
+                }
+
+            };
+            function change5() {
+                console.log("Starting to add changes to item 5")
+                //manage if channel is offline
+                if (isOffline[5] == true) {
+                    // add img
+                    $(".img5").attr("src", apiData[5].logo);
+                    $(".img5").parent().attr("href", apiData[5].url);
+                    // add icon
+                    $(".onlineOrOfflineIcon5").attr("src", "resources/images/OfflineRedSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText5").text("   Offline");
+                    // write name
+                    $(".name5").text(apiData[5].display_name);
+                    // write Game
+                    $(".game5").text(apiData[5].game);
+                } else {
+                    // add img
+                    $(".img5").attr("src", apiData[5].stream.channel.logo);
+                    $(".img5").parent().attr("href", apiData[5].stream.channel.url);
+                    // add icon
+                    $(".onlineOrOfflineIcon5").attr("src", "resources/images/OnlineGreenSphere50x50.png")
+                    //add "online" text
+                    $(".onlineOrOfflineText5").text("   Online");
+                    // write name
+                    $(".name5").text(apiData[5].stream.channel.display_name);
+                    // write Game
+                    $(".game5").text(apiData[5].stream.game);
+                }
+
+            };
+
+            change0();
+            change1();
+            change2();
+            change3();
+            change4();
+            change5();
+        });
+    });
+
+</script>
